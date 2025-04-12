@@ -1,0 +1,22 @@
+{
+    "name": "website-template",
+    "private": true,
+    "scripts": {
+        "dev": "turbo dev",
+        "build": "turbo build",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "check-types": "turbo run check-types"
+    },
+    "workspaces": [
+        "apps/*"
+    ],
+    "devDependencies": {
+        "prettier": "^3.5.3",
+        "turbo": "2.5.0",
+        "typescript": "5.8.2"
+    },
+    "packageManager": "npm@11.2.0",
+    "engines": {
+        "node": "^18.20.2 || >=20.9.0"
+    }
+}
