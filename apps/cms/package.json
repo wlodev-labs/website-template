@@ -18,7 +18,7 @@
         "payload": "3.33.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
-        "@wlodev/payload": "0.2.3"
+        "@wlodev/payload": "0.2.4"
     },
     "devDependencies": {
         "@types/node": "^22.5.4",

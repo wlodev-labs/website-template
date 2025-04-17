@@ -10,6 +10,6 @@
     },
     "dependencies": {
         "astro": "^5.5.5",
-        "@wlodev/astro": "0.2.3"
+        "@wlodev/astro": "0.2.4"
     }
 }
