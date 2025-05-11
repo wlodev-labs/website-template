@@ -3,6 +3,13 @@ import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
+import '../styles/global.css'
+
+import { cms } from '@utils/cms'
+import { Header } from '@components/header'
+
+const websiteSettings = await cms.findGlobal({ slug: 'settings' })
+const headerData = await cms.findGlobal({ slug: 'header' })
 ---
 
 <html lang='pl'>
@@ -15,6 +22,11 @@ import '@fontsource/inter/700.css'
         <title>Wlodev Website Template</title>
     </head>
     <body>
+        <Header
+            data={headerData}
+            websiteSettings={websiteSettings}
+            client:load
+        />
         <slot />
     </body>
 </html>

@@ -73,17 +73,17 @@ export const link: LinkType = ({
     }
 
     const linkTypes: Field[] = [
-        // {
-        //     name: 'reference',
-        //     type: 'relationship',
-        //     admin: {
-        //         condition: (_, siblingData) =>
-        //             siblingData?.type === 'reference',
-        //     },
-        //     label: 'Document to link to',
-        //     relationTo: ['pages', 'posts'],
-        //     required: true,
-        // },
+        {
+            name: 'reference',
+            type: 'relationship',
+            admin: {
+                condition: (_, siblingData) =>
+                    siblingData?.type === 'reference',
+            },
+            label: 'Document to link to',
+            relationTo: ['pages', 'posts'],
+            required: true,
+        },
         {
             name: 'url',
             type: 'text',
