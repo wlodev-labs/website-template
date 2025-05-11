@@ -6,7 +6,7 @@ const Card: React.FC<
 > = ({ className, ref, ...props }) => (
     <div
         className={cn(
-            'rounded-lg border bg-card text-card-foreground shadow-sm',
+            'rounded-lg border border-neutral-200 bg-card text-card-foreground shadow-sm',
             className
         )}
         ref={ref}

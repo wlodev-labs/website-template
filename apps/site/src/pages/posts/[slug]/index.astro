@@ -1,0 +1,58 @@
+---
+import { cms } from '@/utils/cms'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { PostHero } from '@/components/heros/postHero'
+import RichText from '@/components/richText'
+
+// https://docs.astro.build/en/guides/routing/#static-ssg-mode
+// Because all routes must be determined at build time, a dynamic route must export a getStaticPaths()
+// that returns an array of objects with a params property.
+// Each of these objects will generate a corresponding route.
+export async function getStaticPaths() {
+    const posts = await cms.find({ collection: 'posts', limit: 1000 })
+    const params = posts.docs
+        .filter(doc => {
+            return doc.slug !== 'home'
+        })
+        .map(({ slug }) => {
+            return { params: { slug } }
+        })
+    return params
+}
+
+const slug = Astro.params.slug
+if (!slug) {
+    throw new Error('Slug is required')
+}
+
+const postsRes = await cms.find({
+    collection: 'posts',
+    limit: 1,
+    where: {
+        slug: {
+            equals: slug,
+        },
+    },
+})
+
+if (!postsRes.docs || !postsRes.docs.length) {
+    throw new Error(`Page with slug "${slug}" not found`)
+}
+
+const post = postsRes.docs[0]
+---
+
+<BaseLayout>
+    <article class='pt-16 pb-16'>
+        <PostHero post={post} />
+        <div class='flex flex-col items-center gap-4 pt-8'>
+            <div class='container mx-auto px-4'>
+                <RichText
+                    className='max-w-[48rem] mx-auto'
+                    data={post.content}
+                    enableGutter={false}
+                />
+            </div>
+        </div>
+    </article>
+</BaseLayout>

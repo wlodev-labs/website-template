@@ -1,0 +1,60 @@
+---
+import { cms } from '@/utils/cms'
+import { PageRange } from '@/components/pageRange'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { Card, CardContent } from '@/components/ui/card'
+import { Media } from '@/components/media'
+
+const posts = await cms.find({ collection: 'posts', limit: 12, depth: 1 })
+---
+
+<BaseLayout>
+    <div class='pt-24 pb-24'>
+        <div class='container px-4 mx-auto mb-16'>
+            <div class='prose dark:prose-invert max-w-none'>
+                <h1>Posts</h1>
+            </div>
+        </div>
+        <div class='container mx-auto px-4 mb-8'>
+            <PageRange
+                collection='posts'
+                currentPage={posts.page}
+                limit={12}
+                totalDocs={posts.totalDocs}
+            />
+        </div>
+        <div class='container mx-auto px-4 flex flex-wrap gap-4'>
+            {
+                posts.docs.map(post => {
+                    return (
+                        <a
+                            href={`/posts/${post.slug}`}
+                            class='w-full lg:w-[calc(33.333%_-_1rem)]'
+                        >
+                            <Card className='overflow-hidden'>
+                                <div class='aspect-4/3 relative'>
+                                    <Media resource={post.heroImage} fill />
+                                </div>
+                                <CardContent>
+                                    <div class='mt-4'>
+                                        {post.categories.map(category => {
+                                            return (
+                                                <div class='uppercase text-sm font-medium text-black'>
+                                                    {typeof category ===
+                                                    'string'
+                                                        ? category
+                                                        : category.title}
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                    <h4 class='mt-4'>{post.title}</h4>
+                                </CardContent>
+                            </Card>
+                        </a>
+                    )
+                })
+            }
+        </div>
+    </div>
+</BaseLayout>
