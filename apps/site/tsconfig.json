@@ -5,7 +5,11 @@
         "paths": {
             "@components/*": ["./src/components/*"],
             "@blocks/*": ["./src/blocks/*"],
-            "@utils/*": ["./src/utils/*"]
-        }
+            "@utils/*": ["./src/utils/*"],
+            "@layouts/*": ["./src/layouts/*"],
+            "@config/*": ["./src/config/*"]
+        },
+        "jsx": "react-jsx",
+        "jsxImportSource": "react"
     }
 }
