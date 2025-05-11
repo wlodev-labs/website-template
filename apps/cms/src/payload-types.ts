@@ -90,9 +90,11 @@ export interface Config {
   };
   globals: {
     header: Header;
+    settings: Setting;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
+    settings: SettingsSelect<false> | SettingsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -596,6 +598,52 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings".
+ */
+export interface Setting {
+  id: string;
+  brand?: string | null;
+  logo?: (string | null) | Media;
+  socialMedia?: {
+    instagram?:
+      | {
+          link: string;
+          label?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    facebook?:
+      | {
+          link: string;
+          label?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    twitter?:
+      | {
+          link: string;
+          label?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  emails?:
+    | {
+        address: string;
+        id?: string | null;
+      }[]
+    | null;
+  phones?:
+    | {
+        phoneNumber: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -610,6 +658,54 @@ export interface HeaderSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings_select".
+ */
+export interface SettingsSelect<T extends boolean = true> {
+  brand?: T;
+  logo?: T;
+  socialMedia?:
+    | T
+    | {
+        instagram?:
+          | T
+          | {
+              link?: T;
+              label?: T;
+              id?: T;
+            };
+        facebook?:
+          | T
+          | {
+              link?: T;
+              label?: T;
+              id?: T;
+            };
+        twitter?:
+          | T
+          | {
+              link?: T;
+              label?: T;
+              id?: T;
+            };
+      };
+  emails?:
+    | T
+    | {
+        address?: T;
+        id?: T;
+      };
+  phones?:
+    | T
+    | {
+        phoneNumber?: T;
         id?: T;
       };
   updatedAt?: T;

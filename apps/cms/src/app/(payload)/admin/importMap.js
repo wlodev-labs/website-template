@@ -29,76 +29,45 @@ import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { SlugComponent as SlugComponent_92cc057d0a2abb4f6cf0307edf59f986 } from '@/fields/slug/SlugComponent'
 import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
+import { RowLabel as RowLabel_17c6ef4bfe47bfa29d923fb5718170b7 } from '@/globals/Header/RowLabel'
 import { Avatar as Avatar_923d0547317b004548abc1cd5a18a061 } from '@wlodev/payload/client'
 import { LogoutButton as LogoutButton_923d0547317b004548abc1cd5a18a061 } from '@wlodev/payload/client'
 import { WlodevClientUploadHandler as WlodevClientUploadHandler_923d0547317b004548abc1cd5a18a061 } from '@wlodev/payload/client'
 
 export const importMap = {
-    '@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell':
-        RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
-    '@payloadcms/richtext-lexical/rsc#RscEntryLexicalField':
-        RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e,
-    '@payloadcms/richtext-lexical/rsc#LexicalDiffComponent':
-        LexicalDiffComponent_44fe37237e0ebf4470c9990d8cb7b07e,
-    '@payloadcms/richtext-lexical/client#InlineToolbarFeatureClient':
-        InlineToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#FixedToolbarFeatureClient':
-        FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#HeadingFeatureClient':
-        HeadingFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#BoldFeatureClient':
-        BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#ItalicFeatureClient':
-        ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#UnderlineFeatureClient':
-        UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#StrikethroughFeatureClient':
-        StrikethroughFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#SubscriptFeatureClient':
-        SubscriptFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#SuperscriptFeatureClient':
-        SuperscriptFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#InlineCodeFeatureClient':
-        InlineCodeFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#ParagraphFeatureClient':
-        ParagraphFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#AlignFeatureClient':
-        AlignFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#IndentFeatureClient':
-        IndentFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#UnorderedListFeatureClient':
-        UnorderedListFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#OrderedListFeatureClient':
-        OrderedListFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#ChecklistFeatureClient':
-        ChecklistFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#LinkFeatureClient':
-        LinkFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#RelationshipFeatureClient':
-        RelationshipFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#BlockquoteFeatureClient':
-        BlockquoteFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#UploadFeatureClient':
-        UploadFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/richtext-lexical/client#HorizontalRuleFeatureClient':
-        HorizontalRuleFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@payloadcms/plugin-seo/client#OverviewComponent':
-        OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
-    '@payloadcms/plugin-seo/client#MetaTitleComponent':
-        MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860,
-    '@payloadcms/plugin-seo/client#MetaImageComponent':
-        MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860,
-    '@payloadcms/plugin-seo/client#MetaDescriptionComponent':
-        MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860,
-    '@payloadcms/plugin-seo/client#PreviewComponent':
-        PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
-    '@/fields/slug/SlugComponent#SlugComponent':
-        SlugComponent_92cc057d0a2abb4f6cf0307edf59f986,
-    '@payloadcms/richtext-lexical/client#BlocksFeatureClient':
-        BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-    '@wlodev/payload/client#Avatar': Avatar_923d0547317b004548abc1cd5a18a061,
-    '@wlodev/payload/client#LogoutButton':
-        LogoutButton_923d0547317b004548abc1cd5a18a061,
-    '@wlodev/payload/client#WlodevClientUploadHandler':
-        WlodevClientUploadHandler_923d0547317b004548abc1cd5a18a061,
+  "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
+  "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField": RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e,
+  "@payloadcms/richtext-lexical/rsc#LexicalDiffComponent": LexicalDiffComponent_44fe37237e0ebf4470c9990d8cb7b07e,
+  "@payloadcms/richtext-lexical/client#InlineToolbarFeatureClient": InlineToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#FixedToolbarFeatureClient": FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#HeadingFeatureClient": HeadingFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#UnderlineFeatureClient": UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#StrikethroughFeatureClient": StrikethroughFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#SubscriptFeatureClient": SubscriptFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#SuperscriptFeatureClient": SuperscriptFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#InlineCodeFeatureClient": InlineCodeFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#ParagraphFeatureClient": ParagraphFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#AlignFeatureClient": AlignFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#IndentFeatureClient": IndentFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#UnorderedListFeatureClient": UnorderedListFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#OrderedListFeatureClient": OrderedListFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#ChecklistFeatureClient": ChecklistFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#LinkFeatureClient": LinkFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#RelationshipFeatureClient": RelationshipFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#BlockquoteFeatureClient": BlockquoteFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#UploadFeatureClient": UploadFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/richtext-lexical/client#HorizontalRuleFeatureClient": HorizontalRuleFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@payloadcms/plugin-seo/client#OverviewComponent": OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
+  "@payloadcms/plugin-seo/client#MetaTitleComponent": MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860,
+  "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860,
+  "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860,
+  "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
+  "@/fields/slug/SlugComponent#SlugComponent": SlugComponent_92cc057d0a2abb4f6cf0307edf59f986,
+  "@payloadcms/richtext-lexical/client#BlocksFeatureClient": BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@/globals/Header/RowLabel#RowLabel": RowLabel_17c6ef4bfe47bfa29d923fb5718170b7,
+  "@wlodev/payload/client#Avatar": Avatar_923d0547317b004548abc1cd5a18a061,
+  "@wlodev/payload/client#LogoutButton": LogoutButton_923d0547317b004548abc1cd5a18a061,
+  "@wlodev/payload/client#WlodevClientUploadHandler": WlodevClientUploadHandler_923d0547317b004548abc1cd5a18a061
 }
