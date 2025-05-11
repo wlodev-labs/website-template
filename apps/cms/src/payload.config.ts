@@ -3,14 +3,31 @@ import { fileURLToPath } from 'url'
 import { buildConfig } from 'payload'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { wlodevPlugin } from '@wlodev/payload'
+import { seoPlugin } from '@payloadcms/plugin-seo'
+import { getSiteURL, wlodevPlugin } from '@wlodev/payload'
+import type { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
+import type { Post, Page } from './payload-types'
 
 // Your collections imports
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Posts } from './collections/Posts'
+import { Pages } from './collections/Pages'
+import { Header } from './globals/Header/Header'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
+    return doc?.title
+        ? `${doc.title} | Wlodev Website Template`
+        : 'Wlodev Website Template'
+}
+
+const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
+    const url = getSiteURL() ?? new URL('http://localhost:3000')
+    return doc?.slug ? `${url.toString()}/${doc.slug}` : url.toString()
+}
 
 export default buildConfig({
     admin: {
@@ -19,7 +36,8 @@ export default buildConfig({
             baseDir: path.resolve(dirname),
         },
     },
-    collections: [Users, Media],
+    collections: [Pages, Posts, Media, Users],
+    globals: [Header],
     editor: lexicalEditor(),
     secret: process.env.PAYLOAD_SECRET || '',
     typescript: {
@@ -31,5 +49,11 @@ export default buildConfig({
             maxPoolSize: 1,
         },
     }),
-    plugins: [wlodevPlugin()],
+    plugins: [
+        wlodevPlugin(),
+        seoPlugin({
+            generateTitle,
+            generateURL,
+        }),
+    ],
 })
