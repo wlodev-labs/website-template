@@ -15,6 +15,7 @@ import { Posts } from './collections/Posts'
 import { Pages } from './collections/Pages'
 import { Header } from './globals/Header/Header'
 import { Settings } from './globals/settings'
+import { Categories } from './collections/Categories'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -37,7 +38,7 @@ export default buildConfig({
             baseDir: path.resolve(dirname),
         },
     },
-    collections: [Pages, Posts, Media, Users],
+    collections: [Pages, Posts, Categories, Media, Users],
     globals: [Header, Settings],
     editor: lexicalEditor(),
     secret: process.env.PAYLOAD_SECRET || '',

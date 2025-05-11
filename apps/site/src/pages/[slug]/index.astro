@@ -1,0 +1,22 @@
+---
+import { cms } from '@/utils/cms'
+import PageTemplate from './PageTemplate.astro'
+
+// https://docs.astro.build/en/guides/routing/#static-ssg-mode
+// Because all routes must be determined at build time, a dynamic route must export a getStaticPaths()
+// that returns an array of objects with a params property.
+// Each of these objects will generate a corresponding route.
+export async function getStaticPaths() {
+    const pages = await cms.find({ collection: 'pages', limit: 1000 })
+    const params = pages.docs
+        .filter(doc => {
+            return doc.slug !== 'home'
+        })
+        .map(({ slug }) => {
+            return { params: { slug } }
+        })
+    return params
+}
+---
+
+<PageTemplate />

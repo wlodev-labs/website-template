@@ -50,9 +50,6 @@ export const Pages: CollectionConfig<'pages'> = {
                             type: 'blocks',
                             blocks: [CallToAction, Content, MediaBlock],
                             required: true,
-                            admin: {
-                                initCollapsed: true,
-                            },
                         },
                     ],
                     label: 'Content',

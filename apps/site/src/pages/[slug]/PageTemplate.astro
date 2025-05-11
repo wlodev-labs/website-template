@@ -1,0 +1,34 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { RenderBlocks } from '@/components/blocks/renderBlocks'
+import { RenderHero } from '@/components/heros/renderHero'
+import { cms } from '@/utils/cms'
+
+const slug = Astro.params.slug || Astro.props.slug
+if (!slug) {
+    throw new Error('Slug is required')
+}
+
+const page = await cms.find({
+    collection: 'pages',
+    limit: 1,
+    where: {
+        slug: {
+            equals: slug,
+        },
+    },
+})
+
+if (!page.docs || !page.docs.length) {
+    throw new Error(`Page with slug "${slug}" not found`)
+}
+
+const { hero, layout } = page.docs[0]
+---
+
+<BaseLayout>
+    <article class='pt-16 pb-24'>
+        <RenderHero {...hero} />
+        <RenderBlocks blocks={layout} />
+    </article>
+</BaseLayout>

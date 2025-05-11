@@ -12,12 +12,12 @@ export const Header = async ({
     return (
         <header className='container px-4 mx-auto relative z-20'>
             <div className='py-8 flex justify-between'>
-                <a href='/'>
+                <a href='/' className='text-white'>
                     {!websiteSettings ||
                     !websiteSettings.logo ||
                     typeof websiteSettings.logo === 'string' ? (
                         <div>
-                            {websiteSettings.brand ?? 'Logo / Nazwa firmy'}
+                            {websiteSettings.brand ?? 'Logo / Company name'}
                         </div>
                     ) : (
                         <Image
