@@ -1,13 +1,9 @@
 import React from 'react'
-import { HighImpactHero } from './highImpact'
-import { LowImpactHero } from './lowImpact'
-import { MediumImpactHero } from './mediumImpact'
+import { PrimaryHero } from './primaryHero'
 import type { Page } from '@/utils/cms'
 
 const heroes = {
-    highImpact: HighImpactHero,
-    lowImpact: LowImpactHero,
-    mediumImpact: MediumImpactHero,
+    primary: PrimaryHero,
 }
 
 export const RenderHero: React.FC<Page['hero']> = props => {

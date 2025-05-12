@@ -37,16 +37,18 @@ const posts = await cms.find({ collection: 'posts', limit: 12, depth: 1 })
                                 </div>
                                 <CardContent>
                                     <div class='mt-4'>
-                                        {post.categories.map(category => {
-                                            return (
-                                                <div class='uppercase text-sm font-medium text-black'>
-                                                    {typeof category ===
-                                                    'string'
-                                                        ? category
-                                                        : category.title}
-                                                </div>
-                                            )
-                                        })}
+                                        {(post.categories || []).map(
+                                            category => {
+                                                return (
+                                                    <div class='uppercase text-sm font-medium text-black'>
+                                                        {typeof category ===
+                                                        'string'
+                                                            ? category
+                                                            : category.name}
+                                                    </div>
+                                                )
+                                            }
+                                        )}
                                     </div>
                                     <h4 class='mt-4'>{post.title}</h4>
                                 </CardContent>

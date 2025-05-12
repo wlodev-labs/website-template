@@ -5,7 +5,7 @@ import { Media } from '../media'
 import RichText from '../richText'
 import type { Page } from '@/utils/cms'
 
-export const HighImpactHero: React.FC<Page['hero']> = ({
+export const PrimaryHero: React.FC<Page['hero']> = ({
     links,
     media,
     richText,

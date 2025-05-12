@@ -17,7 +17,7 @@ export const PostHero: React.FC<{
                                 typeof category === 'object' &&
                                 category !== null
                             ) {
-                                const { title: categoryTitle } = category
+                                const { name: categoryTitle } = category
 
                                 const titleToUse =
                                     categoryTitle || 'Untitled category'

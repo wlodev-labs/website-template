@@ -17,7 +17,8 @@ export const Header = async ({
                     !websiteSettings.logo ||
                     typeof websiteSettings.logo === 'string' ? (
                         <div>
-                            {websiteSettings.brand ?? 'Logo / Company name'}
+                            {websiteSettings.companyName ??
+                                'Logo / Company name'}
                         </div>
                     ) : (
                         <Image
