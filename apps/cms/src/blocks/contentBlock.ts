@@ -11,17 +11,17 @@ const columnFields: Field[] = [
     {
         name: 'size',
         type: 'select',
-        defaultValue: 'oneThird',
+        defaultValue: 'full',
         label: {
             en: 'Column Size',
             pl: 'Rozmiar kolumny',
         },
         options: [
             {
-                value: 'oneThird',
+                value: 'full',
                 label: {
-                    en: 'One Third',
-                    pl: 'Jedna trzecia',
+                    en: 'Full',
+                    pl: 'Cała szerokość',
                 },
             },
             {
@@ -29,20 +29,6 @@ const columnFields: Field[] = [
                 label: {
                     en: 'Half',
                     pl: 'Połowa',
-                },
-            },
-            {
-                value: 'twoThirds',
-                label: {
-                    en: 'Two Thirds',
-                    pl: 'Dwie trzecie',
-                },
-            },
-            {
-                value: 'full',
-                label: {
-                    en: 'Full',
-                    pl: 'Cała szerokość',
                 },
             },
         ],

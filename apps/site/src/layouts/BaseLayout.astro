@@ -9,8 +9,14 @@ import { cms } from '@utils/cms'
 import { Header } from '@components/header'
 import { Footer } from '@/components/footer'
 
+interface Props {
+    invertHeaderColor?: boolean
+}
+
 const websiteSettings = await cms.findGlobal({ slug: 'settings' })
 const headerData = await cms.findGlobal({ slug: 'header' })
+
+const { invertHeaderColor } = Astro.props
 ---
 
 <html lang='pl'>
@@ -23,7 +29,11 @@ const headerData = await cms.findGlobal({ slug: 'header' })
         <title>Wlodev Website Template</title>
     </head>
     <body>
-        <Header data={headerData} websiteSettings={websiteSettings} />
+        <Header
+            data={headerData}
+            websiteSettings={websiteSettings}
+            invertHeaderColor={invertHeaderColor}
+        />
         <slot />
         <Footer websiteSettings={websiteSettings} />
     </body>

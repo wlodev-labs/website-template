@@ -190,7 +190,8 @@ export const Posts: CollectionConfig<'posts'> = {
             hooks: {
                 beforeChange: [
                     ({ siblingData, value }) => {
-                        if (siblingData._status === 'published' && !value) {
+                        // if (siblingData._status === 'published' && !value) {
+                        if (!value) {
                             return new Date()
                         }
                         return value

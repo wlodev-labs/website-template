@@ -14,7 +14,7 @@ export const PrimaryHero: React.FC<Page['hero']> = ({
     return (
         <div className='relative text-white lg:rounded-lg lg:container lg:mx-auto lg:overflow-hidden'>
             <div className='z-10 py-24 px-4 lg:py-40 bg-black/50 relative flex items-center justify-center'>
-                <div className='max-w-[36.5rem] text-center'>
+                <div className='max-w-lg text-center'>
                     {richText && (
                         <RichText data={richText} enableGutter={false} />
                     )}

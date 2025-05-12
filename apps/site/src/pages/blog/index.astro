@@ -1,18 +1,17 @@
 ---
 import { cms } from '@/utils/cms'
 import { PageRange } from '@/components/pageRange'
-import BaseLayout from '@/layouts/BaseLayout.astro'
-import { Card, CardContent } from '@/components/ui/card'
 import { Media } from '@/components/media'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 
 const posts = await cms.find({ collection: 'posts', limit: 12, depth: 1 })
 ---
 
 <BaseLayout>
     <div class='pt-24 pb-24'>
-        <div class='container px-4 mx-auto mb-16'>
-            <div class='prose dark:prose-invert max-w-none'>
-                <h1>Posts</h1>
+        <div class='container px-4 mx-auto mb-4'>
+            <div class='max-w-none'>
+                <h1>Blog</h1>
             </div>
         </div>
         <div class='container mx-auto px-4 mb-8'>
@@ -28,31 +27,26 @@ const posts = await cms.find({ collection: 'posts', limit: 12, depth: 1 })
                 posts.docs.map(post => {
                     return (
                         <a
-                            href={`/posts/${post.slug}`}
-                            class='w-full lg:w-[calc(33.333%_-_1rem)]'
+                            href={`/blog/${post.slug}`}
+                            class='w-full lg:w-[calc(33.333%_-_1rem)] rounded-lg overflow-hidden border border-neutral-200'
                         >
-                            <Card className='overflow-hidden'>
-                                <div class='aspect-4/3 relative'>
-                                    <Media resource={post.heroImage} fill />
+                            <div class='aspect-4/3 relative'>
+                                <Media resource={post.heroImage} fill />
+                            </div>
+                            <div class='px-6 py-4'>
+                                {(post.categories || []).map(category => {
+                                    return (
+                                        <div class='uppercase text-sm font-medium text-neutral-500'>
+                                            {typeof category === 'string'
+                                                ? category
+                                                : category.name}
+                                        </div>
+                                    )
+                                })}
+                                <div class='mt-1'>
+                                    <h4>{post.title}</h4>
                                 </div>
-                                <CardContent>
-                                    <div class='mt-4'>
-                                        {(post.categories || []).map(
-                                            category => {
-                                                return (
-                                                    <div class='uppercase text-sm font-medium text-black'>
-                                                        {typeof category ===
-                                                        'string'
-                                                            ? category
-                                                            : category.name}
-                                                    </div>
-                                                )
-                                            }
-                                        )}
-                                    </div>
-                                    <h4 class='mt-4'>{post.title}</h4>
-                                </CardContent>
-                            </Card>
+                            </div>
                         </a>
                     )
                 })

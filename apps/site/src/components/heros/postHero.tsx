@@ -67,6 +67,7 @@ export const PostHero: React.FC<{
                         resource={heroImage}
                     />
                 )}
+                <div className='bg-black/50 absolute inset-0'></div>
                 <div className='absolute pointer-events-none left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent' />
             </div>
         </div>

@@ -19,7 +19,7 @@ const buttonVariants = cva(
                 sm: 'h-9 rounded px-3',
             },
             variant: {
-                default: 'bg-primary hover:bg-primary/90',
+                default: 'text-white bg-primary hover:bg-primary/90',
                 link: 'text-black items-start justify-start underline-offset-4 hover:underline',
                 outline:
                     'text-black border border-neutral-200 hover:bg-neutral-100',
