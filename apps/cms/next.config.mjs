@@ -1,8 +1,8 @@
-import type { NextConfig } from 'next'
 import { withPayload } from '@payloadcms/next/withPayload'
 import { withWlodev } from '@wlodev/payload/withWlodev'
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     // Your Next.js config here
 }
 
