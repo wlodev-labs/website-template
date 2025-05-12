@@ -6,7 +6,8 @@
         "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
         "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbo",
         "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
-        "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types"
+        "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+        "check:types": "cross-env NODE_OPTIONS=--no-deprecation tsc --noEmit"
     },
     "dependencies": {
         "@payloadcms/db-mongodb": "3.37.0",
