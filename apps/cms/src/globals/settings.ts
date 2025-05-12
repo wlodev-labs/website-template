@@ -32,12 +32,18 @@ export const Settings: GlobalConfig = {
             required: false,
         },
         {
-            name: 'socialMedia',
+            name: 'address',
+            type: 'text',
             label: {
-                en: 'Social Media',
-                pl: 'Profile na mediach społecznościowych',
+                en: 'Company Address',
+                pl: 'Adres firmy',
             },
+            required: false,
+        },
+        {
+            name: 'socialMedia',
             type: 'group',
+            label: false,
             fields: [
                 {
                     name: 'instagram',

@@ -168,9 +168,6 @@ export interface Page {
              * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
              */
             label: string;
-            /**
-             * The appearance of the link. The default option is a standard link, while the outline option is a link with a border.
-             */
             appearance?: ('default' | 'outline') | null;
           };
           id?: string | null;
@@ -335,9 +332,6 @@ export interface CallToActionBlock {
            * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
            */
           label: string;
-          /**
-           * The appearance of the link. The default option is a standard link, while the outline option is a link with a border.
-           */
           appearance?: ('default' | 'outline') | null;
         };
         id?: string | null;
@@ -388,9 +382,6 @@ export interface ContentBlock {
            * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
            */
           label: string;
-          /**
-           * The appearance of the link. The default option is a standard link, while the outline option is a link with a border.
-           */
           appearance?: ('default' | 'outline') | null;
         };
         id?: string | null;
@@ -726,6 +717,7 @@ export interface Setting {
   id: string;
   companyName?: string | null;
   logo?: (string | null) | Media;
+  address?: string | null;
   socialMedia?: {
     instagram?:
       | {
@@ -794,6 +786,7 @@ export interface HeaderSelect<T extends boolean = true> {
 export interface SettingsSelect<T extends boolean = true> {
   companyName?: T;
   logo?: T;
+  address?: T;
   socialMedia?:
     | T
     | {

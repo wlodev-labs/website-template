@@ -2,6 +2,7 @@
 
 @theme {
     --font-inter: 'Inter', sans-serif;
+    --color-primary: theme('colors.emerald.700');
 }
 
 @layer base {

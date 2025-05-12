@@ -4,14 +4,20 @@ import deepMerge from '@/utils/deepMerge'
 
 export const appearanceOptions: Record<
     LinkAppearances,
-    { label: string; value: string }
+    { label: Record<string, string> | string; value: string }
 > = {
     default: {
-        label: 'Default',
+        label: {
+            en: 'Default',
+            pl: 'Domyślny',
+        },
         value: 'default',
     },
     outline: {
-        label: 'Outline',
+        label: {
+            en: 'Outline',
+            pl: 'Obramowanie',
+        },
         value: 'outline',
     },
 }
@@ -173,10 +179,6 @@ export const link: LinkType = ({
                 pl: 'Wygląd linku',
             },
             admin: {
-                description: {
-                    en: 'The appearance of the link. The default option is a standard link, while the outline option is a link with a border.',
-                    pl: 'Wygląd linku. Domyślną opcją jest standardowy link, natomiast opcja outline to link z obramowaniem.',
-                },
                 width: '50%',
             },
             defaultValue: 'default',

@@ -7,6 +7,7 @@ import '../styles/global.css'
 
 import { cms } from '@utils/cms'
 import { Header } from '@components/header'
+import { Footer } from '@/components/footer'
 
 const websiteSettings = await cms.findGlobal({ slug: 'settings' })
 const headerData = await cms.findGlobal({ slug: 'header' })
@@ -22,11 +23,8 @@ const headerData = await cms.findGlobal({ slug: 'header' })
         <title>Wlodev Website Template</title>
     </head>
     <body>
-        <Header
-            data={headerData}
-            websiteSettings={websiteSettings}
-            client:load
-        />
+        <Header data={headerData} websiteSettings={websiteSettings} />
         <slot />
+        <Footer websiteSettings={websiteSettings} />
     </body>
 </html>
