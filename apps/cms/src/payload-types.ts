@@ -133,7 +133,7 @@ export interface Page {
   id: string;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'primary' | 'none';
     richText?: {
       root: {
         type: string;
@@ -164,9 +164,12 @@ export interface Page {
                   value: string | Post;
                 } | null);
             url?: string | null;
+            /**
+             * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
+             */
             label: string;
             /**
-             * Choose how the link should be rendered.
+             * The appearance of the link. The default option is a standard link, while the outline option is a link with a border.
              */
             appearance?: ('default' | 'outline') | null;
           };
@@ -185,6 +188,9 @@ export interface Page {
     description?: string | null;
   };
   publishedAt?: string | null;
+  /**
+   * Slug is a text which will be generated and used in the URL of the page. It is generated from the Title / Name field by default.
+   */
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
@@ -197,6 +203,9 @@ export interface Page {
 export interface Post {
   id: string;
   title: string;
+  /**
+   * This image will be used in the hero section of the post at the very top.
+   */
   heroImage?: (string | null) | Media;
   content: {
     root: {
@@ -213,8 +222,8 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  relatedPosts?: (string | Post)[] | null;
   categories?: (string | Category)[] | null;
+  relatedPosts?: (string | Post)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -224,18 +233,29 @@ export interface Post {
     description?: string | null;
   };
   publishedAt?: string | null;
+  /**
+   * Slug is a text which will be generated and used in the URL of the page. It is generated from the Title / Name field by default.
+   */
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Media collection is used to store images, videos, pdf and other files.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
   id: string;
+  /**
+   * Alt text is a short description of the image. It is used for accessibility, SEO, and as a hint for users who cannot see the image. The text is not visible on the page when the image loads correctly.
+   */
   alt?: string | null;
+  /**
+   * Caption is a short description of the image. It is displayed below the image.
+   */
   caption?: {
     root: {
       type: string;
@@ -267,7 +287,10 @@ export interface Media {
  */
 export interface Category {
   id: string;
-  title: string;
+  name: string;
+  /**
+   * Slug is a text which will be generated and used in the URL of the page. It is generated from the Title / Name field by default.
+   */
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
@@ -308,9 +331,12 @@ export interface CallToActionBlock {
                 value: string | Post;
               } | null);
           url?: string | null;
+          /**
+           * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
+           */
           label: string;
           /**
-           * Choose how the link should be rendered.
+           * The appearance of the link. The default option is a standard link, while the outline option is a link with a border.
            */
           appearance?: ('default' | 'outline') | null;
         };
@@ -358,9 +384,12 @@ export interface ContentBlock {
                 value: string | Post;
               } | null);
           url?: string | null;
+          /**
+           * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
+           */
           label: string;
           /**
-           * Choose how the link should be rendered.
+           * The appearance of the link. The default option is a standard link, while the outline option is a link with a border.
            */
           appearance?: ('default' | 'outline') | null;
         };
@@ -574,8 +603,8 @@ export interface PostsSelect<T extends boolean = true> {
   title?: T;
   heroImage?: T;
   content?: T;
-  relatedPosts?: T;
   categories?: T;
+  relatedPosts?: T;
   meta?:
     | T
     | {
@@ -594,7 +623,7 @@ export interface PostsSelect<T extends boolean = true> {
  * via the `definition` "categories_select".
  */
 export interface CategoriesSelect<T extends boolean = true> {
-  title?: T;
+  name?: T;
   slug?: T;
   slugLock?: T;
   updatedAt?: T;
@@ -678,6 +707,9 @@ export interface Header {
                 value: string | Post;
               } | null);
           url?: string | null;
+          /**
+           * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
+           */
           label: string;
         };
         id?: string | null;
@@ -692,7 +724,7 @@ export interface Header {
  */
 export interface Setting {
   id: string;
-  brand?: string | null;
+  companyName?: string | null;
   logo?: (string | null) | Media;
   socialMedia?: {
     instagram?:
@@ -760,7 +792,7 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "settings_select".
  */
 export interface SettingsSelect<T extends boolean = true> {
-  brand?: T;
+  companyName?: T;
   logo?: T;
   socialMedia?:
     | T
@@ -802,31 +834,6 @@ export interface SettingsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BannerBlock".
- */
-export interface BannerBlock {
-  style: 'info' | 'warning' | 'error' | 'success';
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'banner';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

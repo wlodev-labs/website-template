@@ -14,24 +14,25 @@ export const hero: Field = {
         {
             name: 'type',
             type: 'select',
-            defaultValue: 'lowImpact',
-            label: 'Type',
+            defaultValue: 'primary',
+            label: {
+                en: 'Hero Type',
+                pl: 'Typ sekcji hero',
+            },
             options: [
                 {
-                    label: 'None',
+                    value: 'primary',
+                    label: {
+                        en: 'Primary Hero',
+                        pl: 'Główna sekcja hero',
+                    },
+                },
+                {
                     value: 'none',
-                },
-                {
-                    label: 'High Impact',
-                    value: 'highImpact',
-                },
-                {
-                    label: 'Medium Impact',
-                    value: 'mediumImpact',
-                },
-                {
-                    label: 'Low Impact',
-                    value: 'lowImpact',
+                    label: {
+                        en: 'No Hero',
+                        pl: 'Brak sekcji hero',
+                    },
                 },
             ],
             required: true,
@@ -51,19 +52,24 @@ export const hero: Field = {
                     ]
                 },
             }),
+            admin: {
+                condition: (_, { type } = {}) => ['primary'].includes(type),
+            },
             label: false,
         },
         linkGroup({
             overrides: {
                 maxRows: 2,
+                admin: {
+                    condition: (_, { type } = {}) => ['primary'].includes(type),
+                },
             },
         }),
         {
             name: 'media',
             type: 'upload',
             admin: {
-                condition: (_, { type } = {}) =>
-                    ['highImpact', 'mediumImpact'].includes(type),
+                condition: (_, { type } = {}) => ['primary'].includes(type),
             },
             relationTo: 'media',
             required: true,

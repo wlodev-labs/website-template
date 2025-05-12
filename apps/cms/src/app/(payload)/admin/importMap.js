@@ -29,7 +29,6 @@ import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { SlugComponent as SlugComponent_92cc057d0a2abb4f6cf0307edf59f986 } from '@/fields/slug/SlugComponent'
 import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
-import { RowLabel as RowLabel_17c6ef4bfe47bfa29d923fb5718170b7 } from '@/globals/Header/RowLabel'
 import { Avatar as Avatar_923d0547317b004548abc1cd5a18a061 } from '@wlodev/payload/client'
 import { LogoutButton as LogoutButton_923d0547317b004548abc1cd5a18a061 } from '@wlodev/payload/client'
 import { WlodevClientUploadHandler as WlodevClientUploadHandler_923d0547317b004548abc1cd5a18a061 } from '@wlodev/payload/client'
@@ -66,7 +65,6 @@ export const importMap = {
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@/fields/slug/SlugComponent#SlugComponent": SlugComponent_92cc057d0a2abb4f6cf0307edf59f986,
   "@payloadcms/richtext-lexical/client#BlocksFeatureClient": BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-  "@/globals/Header/RowLabel#RowLabel": RowLabel_17c6ef4bfe47bfa29d923fb5718170b7,
   "@wlodev/payload/client#Avatar": Avatar_923d0547317b004548abc1cd5a18a061,
   "@wlodev/payload/client#LogoutButton": LogoutButton_923d0547317b004548abc1cd5a18a061,
   "@wlodev/payload/client#WlodevClientUploadHandler": WlodevClientUploadHandler_923d0547317b004548abc1cd5a18a061

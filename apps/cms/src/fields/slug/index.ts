@@ -39,6 +39,10 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
         admin: {
             position: 'sidebar',
             ...(slugOverrides?.admin || {}),
+            description: {
+                en: 'Slug is a text which will be generated and used in the URL of the page. It is generated from the Title / Name field by default.',
+                pl: 'Slug to tekst, który zostanie wygenerowany i użyty w adresie URL strony. Domyślnie jest generowany z pola Tytuł / Nazwa.',
+            },
             components: {
                 Field: {
                     path: '@/fields/slug/SlugComponent#SlugComponent',

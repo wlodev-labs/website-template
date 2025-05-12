@@ -38,8 +38,8 @@ export default buildConfig({
             baseDir: path.resolve(dirname),
         },
     },
-    collections: [Pages, Posts, Categories, Media, Users],
     globals: [Header, Settings],
+    collections: [Pages, Posts, Categories, Media, Users],
     editor: lexicalEditor(),
     secret: process.env.PAYLOAD_SECRET || '',
     typescript: {

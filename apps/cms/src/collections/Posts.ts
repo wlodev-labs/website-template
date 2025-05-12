@@ -7,7 +7,6 @@ import {
     InlineToolbarFeature,
     lexicalEditor,
 } from '@payloadcms/richtext-lexical'
-import { Banner } from '@/blocks/banner'
 import { MediaBlock } from '@/blocks/mediaBlock'
 import {
     MetaDescriptionField,
@@ -20,6 +19,16 @@ import { slugField } from '@/fields/slug'
 
 export const Posts: CollectionConfig<'posts'> = {
     slug: 'posts',
+    labels: {
+        singular: {
+            en: 'Post',
+            pl: 'Post',
+        },
+        plural: {
+            en: 'Posts',
+            pl: 'Posty',
+        },
+    },
     access: {
         read: () => true,
     },
@@ -38,11 +47,16 @@ export const Posts: CollectionConfig<'posts'> = {
     admin: {
         defaultColumns: ['title', 'slug', 'updatedAt'],
         useAsTitle: 'title',
+        group: 'Blog',
     },
     fields: [
         {
             name: 'title',
             type: 'text',
+            label: {
+                en: 'Title',
+                pl: 'Tytuł',
+            },
             required: true,
         },
         {
@@ -53,6 +67,16 @@ export const Posts: CollectionConfig<'posts'> = {
                         {
                             name: 'heroImage',
                             type: 'upload',
+                            label: {
+                                en: 'Hero image',
+                                pl: 'Obrazek w sekcji Hero',
+                            },
+                            admin: {
+                                description: {
+                                    en: 'This image will be used in the hero section of the post at the very top.',
+                                    pl: 'Ten obrazek będzie użyty w sekcji Hero posta na samej górze.',
+                                },
+                            },
                             relationTo: 'media',
                         },
                         {
@@ -71,7 +95,7 @@ export const Posts: CollectionConfig<'posts'> = {
                                             ],
                                         }),
                                         BlocksFeature({
-                                            blocks: [Banner, MediaBlock],
+                                            blocks: [MediaBlock],
                                         }),
                                         FixedToolbarFeature(),
                                         InlineToolbarFeature(),
@@ -82,14 +106,26 @@ export const Posts: CollectionConfig<'posts'> = {
                             label: false,
                             required: true,
                         },
-                    ],
-                    label: 'Content',
-                },
-                {
-                    fields: [
+                        {
+                            name: 'categories',
+                            type: 'relationship',
+                            label: {
+                                en: 'Categories',
+                                pl: 'Kategorie',
+                            },
+                            admin: {
+                                position: 'sidebar',
+                            },
+                            hasMany: true,
+                            relationTo: 'categories',
+                        },
                         {
                             name: 'relatedPosts',
                             type: 'relationship',
+                            label: {
+                                en: 'Related posts',
+                                pl: 'Powiązane posty',
+                            },
                             admin: {
                                 position: 'sidebar',
                             },
@@ -103,17 +139,11 @@ export const Posts: CollectionConfig<'posts'> = {
                             hasMany: true,
                             relationTo: 'posts',
                         },
-                        {
-                            name: 'categories',
-                            type: 'relationship',
-                            admin: {
-                                position: 'sidebar',
-                            },
-                            hasMany: true,
-                            relationTo: 'categories',
-                        },
                     ],
-                    label: 'Meta',
+                    label: {
+                        en: 'Content',
+                        pl: 'Treść postu',
+                    },
                 },
                 {
                     name: 'meta',
@@ -147,6 +177,10 @@ export const Posts: CollectionConfig<'posts'> = {
         {
             name: 'publishedAt',
             type: 'date',
+            label: {
+                en: 'Published At',
+                pl: 'Data publikacji',
+            },
             admin: {
                 date: {
                     pickerAppearance: 'dayAndTime',

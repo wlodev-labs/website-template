@@ -5,8 +5,8 @@ import { MediaBlock } from './mediaBlock'
 import type { Page } from '@/utils/cms'
 
 const blockComponents = {
-    content: ContentBlock,
     cta: CallToActionBlock,
+    content: ContentBlock,
     mediaBlock: MediaBlock,
 }
 

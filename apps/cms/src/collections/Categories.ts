@@ -3,18 +3,33 @@ import { slugField } from '@/fields/slug'
 
 export const Categories: CollectionConfig = {
     slug: 'categories',
+    labels: {
+        singular: {
+            en: 'Category',
+            pl: 'Kategoria',
+        },
+        plural: {
+            en: 'Categories',
+            pl: 'Kategorie',
+        },
+    },
+    admin: {
+        useAsTitle: 'name',
+        group: 'Blog',
+    },
     access: {
         read: () => true,
     },
-    admin: {
-        useAsTitle: 'title',
-    },
     fields: [
         {
-            name: 'title',
+            name: 'name',
             type: 'text',
+            label: {
+                en: 'Name',
+                pl: 'Nazwa',
+            },
             required: true,
         },
-        ...slugField(),
+        ...slugField('name'),
     ],
 }

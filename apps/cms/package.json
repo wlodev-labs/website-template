@@ -9,15 +9,15 @@
         "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types"
     },
     "dependencies": {
-        "@payloadcms/db-mongodb": "3.33.0",
-        "@payloadcms/next": "3.33.0",
-        "@payloadcms/plugin-seo": "3.33.0",
-        "@payloadcms/richtext-lexical": "3.33.0",
-        "@wlodev/payload": "0.2.7",
+        "@payloadcms/db-mongodb": "3.37.0",
+        "@payloadcms/next": "3.37.0",
+        "@payloadcms/plugin-seo": "3.37.0",
+        "@payloadcms/richtext-lexical": "3.37.0",
+        "@wlodev/payload": "0.4.0",
         "cross-env": "^7.0.3",
         "graphql": "^16.8.1",
-        "next": "^15.2.3",
-        "payload": "3.33.0",
+        "next": "^15.3.2",
+        "payload": "3.37.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0"
     },

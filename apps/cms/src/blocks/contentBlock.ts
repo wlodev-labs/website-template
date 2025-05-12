@@ -12,22 +12,38 @@ const columnFields: Field[] = [
         name: 'size',
         type: 'select',
         defaultValue: 'oneThird',
+        label: {
+            en: 'Column Size',
+            pl: 'Rozmiar kolumny',
+        },
         options: [
             {
-                label: 'One Third',
                 value: 'oneThird',
+                label: {
+                    en: 'One Third',
+                    pl: 'Jedna trzecia',
+                },
             },
             {
-                label: 'Half',
                 value: 'half',
+                label: {
+                    en: 'Half',
+                    pl: 'Połowa',
+                },
             },
             {
-                label: 'Two Thirds',
                 value: 'twoThirds',
+                label: {
+                    en: 'Two Thirds',
+                    pl: 'Dwie trzecie',
+                },
             },
             {
-                label: 'Full',
                 value: 'full',
+                label: {
+                    en: 'Full',
+                    pl: 'Cała szerokość',
+                },
             },
         ],
     },
@@ -49,6 +65,10 @@ const columnFields: Field[] = [
     {
         name: 'enableLink',
         type: 'checkbox',
+        label: {
+            en: 'Enable Link',
+            pl: 'Akywuj link pod kolumną',
+        },
     },
     link({
         overrides: {
@@ -64,10 +84,34 @@ const columnFields: Field[] = [
 export const Content: Block = {
     slug: 'content',
     interfaceName: 'ContentBlock',
+    labels: {
+        singular: {
+            en: 'Content',
+            pl: 'Treść',
+        },
+        plural: {
+            en: 'Contents',
+            pl: 'Treści',
+        },
+    },
     fields: [
         {
             name: 'columns',
             type: 'array',
+            label: {
+                en: 'Columns',
+                pl: 'Kolumny',
+            },
+            labels: {
+                singular: {
+                    en: 'column',
+                    pl: 'kolumna',
+                },
+                plural: {
+                    en: 'columns',
+                    pl: 'kolumny',
+                },
+            },
             admin: {
                 initCollapsed: true,
             },

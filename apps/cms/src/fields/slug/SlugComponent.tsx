@@ -9,6 +9,7 @@ import {
     FieldLabel,
     useFormFields,
     useForm,
+    FieldDescription,
 } from '@payloadcms/ui'
 
 import { formatSlug } from '@/hooks/formatSlug'
@@ -87,12 +88,15 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
                     {checkboxValue ? 'Unlock' : 'Lock'}
                 </Button>
             </div>
-
             <TextInput
                 value={value}
                 onChange={setValue}
                 path={path || field.name}
                 readOnly={Boolean(readOnly)}
+            />
+            <FieldDescription
+                path={path || field.name}
+                description={field.admin?.description}
             />
         </div>
     )

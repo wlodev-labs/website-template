@@ -18,6 +18,10 @@ type CMSLinkType = {
     url?: string | null
 }
 
+/**
+ * Intended for use with the payloadcms where the link field was used
+ * It seamlessly handles the different types of links that can be used by the client
+ */
 export const CMSLink: React.FC<CMSLinkType> = props => {
     const {
         type,
