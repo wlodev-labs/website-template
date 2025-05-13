@@ -1,17 +1,22 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { ImageMedia } from './imageMedia'
 import { VideoMedia } from './videoMedia'
 import type { MediaProps } from './types'
 
-export const Media: React.FC<MediaProps> = props => {
-    const { className, htmlElement = 'div', resource } = props
+export const Media = ({
+    className,
+    as = 'div',
+    videoClassName,
+    ...props
+}: MediaProps) => {
+    const Tag = as || React.Fragment
     const isVideo =
-        typeof resource === 'object' && resource?.mimeType?.includes('video')
-    const Tag = htmlElement || Fragment
+        typeof props.resource === 'object' &&
+        props.resource?.mimeType?.includes('video')
 
     return (
         <Tag
-            {...(htmlElement !== null
+            {...(as !== null
                 ? {
                       className,
                   }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { cn } from '@/utils/ui'
 import RichText from '../richText'
-import type { MediaBlock as MediaBlockProps } from '@/utils/cms'
 import { Media } from '../media'
+import type { MediaBlock as MediaBlockProps } from '@/utils/cms'
 
 type Props = MediaBlockProps & {
     breakout?: boolean
@@ -38,10 +38,7 @@ export const MediaBlock: React.FC<Props> = props => {
         >
             {media && (
                 <Media
-                    imgClassName={cn(
-                        'border border-border rounded-[0.8rem]',
-                        imgClassName
-                    )}
+                    imgClassName={cn('rounded-lg', imgClassName)}
                     resource={media}
                 />
             )}

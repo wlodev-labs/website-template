@@ -1,16 +1,20 @@
 import type { ElementType } from 'react'
 import type { Media as CMSMediaType } from '@/utils/cms'
+import type { ImageProps } from '../image'
+
+type MyOmit<T, K extends PropertyKey> = {
+    [P in keyof T as Exclude<P, K>]: T[P]
+}
 
 export type MediaProps = {
+    as?: ElementType | null
+    resource?: CMSMediaType | string | null
     className?: string
     imgClassName?: string
     videoClassName?: string
-    pictureClassName?: string
-    htmlElement?: ElementType | null
-    resource?: CMSMediaType | string | null
-    onClick?: () => void
-    loading?: React.ImgHTMLAttributes<HTMLImageElement>['loading']
-    decoding?: React.ImgHTMLAttributes<HTMLImageElement>['decoding']
-    fetchPriority?: React.ImgHTMLAttributes<HTMLImageElement>['fetchPriority']
-    fill?: boolean
-}
+} & MyOmit<ImageProps, 'className' | 'src'>
+
+export type ImageMediaProps = MyOmit<
+    MediaProps,
+    'as' | 'className' | 'videoClassName'
+>
