@@ -497,7 +497,7 @@ What [wlodev.com](https://wlodev.com) platform gives you and your clients:
     - Built-in analytics with no additional setup
     - Complete client dashboard. Track website visits, modify content and manage billing all in one place.
 
-These are only the highlights and more features are about to come very soon. All development sites are **free**, so give it a try and create your first development website now! Visit [wlodev.com](https://wlodev.com) and simplify your website development 🌏.
+These are only the highlights and more features are about to come very soon. All development sites are **free**, so give it a shot and create your first development website now! Visit [wlodev.com](https://wlodev.com) and simplify your website development 🌏.
 
 ## Questions
 
