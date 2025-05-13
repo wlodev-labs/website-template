@@ -1,7 +1,7 @@
 ---
-import { cms } from '@/utils/cms'
-import BaseLayout from '@/layouts/BaseLayout.astro'
+import { cms } from '@/utils/payload'
 import { PostHero } from '@/components/heros/postHero'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 import RichText from '@/components/richText'
 
 // https://docs.astro.build/en/guides/routing/#static-ssg-mode
@@ -10,13 +10,9 @@ import RichText from '@/components/richText'
 // Each of these objects will generate a corresponding route.
 export async function getStaticPaths() {
     const posts = await cms.find({ collection: 'posts', limit: 1000 })
-    const params = posts.docs
-        .filter(doc => {
-            return doc.slug !== 'home'
-        })
-        .map(({ slug }) => {
-            return { params: { slug } }
-        })
+    const params = posts.docs.map(({ slug }) => {
+        return { params: { slug } }
+    })
     return params
 }
 
@@ -25,6 +21,7 @@ if (!slug) {
     throw new Error('Slug is required')
 }
 
+// Load the data from the payloadcms
 const postsRes = await cms.find({
     collection: 'posts',
     limit: 1,
@@ -38,7 +35,6 @@ const postsRes = await cms.find({
 if (!postsRes.docs || !postsRes.docs.length) {
     throw new Error(`Page with slug "${slug}" not found`)
 }
-
 const post = postsRes.docs[0]
 ---
 

@@ -1,5 +1,5 @@
 import type { ElementType } from 'react'
-import type { Media as CMSMediaType } from '@/utils/cms'
+import type { Media as CMSMediaType } from '@/utils/payload'
 import type { ImageProps } from '../image'
 
 type MyOmit<T, K extends PropertyKey> = {

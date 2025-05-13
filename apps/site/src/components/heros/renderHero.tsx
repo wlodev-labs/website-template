@@ -1,6 +1,6 @@
 import React from 'react'
 import { PrimaryHero } from './primaryHero'
-import type { Page } from '@/utils/cms'
+import type { Page } from '@/utils/payload'
 
 const heroes = {
     primary: PrimaryHero,

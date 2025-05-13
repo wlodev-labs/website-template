@@ -14,7 +14,7 @@ import {
 import type {
     CallToActionBlock as CTABlockProps,
     MediaBlock as MediaBlockProps,
-} from '@/utils/cms'
+} from '@/utils/payload'
 import { CallToActionBlock } from './blocks/callToActionBlock'
 import { cn } from '@/utils/ui'
 

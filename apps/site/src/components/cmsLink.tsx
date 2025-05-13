@@ -1,6 +1,6 @@
 import React from 'react'
 import { cn } from '@utils/ui'
-import type { Page, Post } from '@utils/cms'
+import type { Page, Post } from '@/utils/payload'
 import { Button, type ButtonProps } from './ui/button'
 
 type CMSLinkType = {

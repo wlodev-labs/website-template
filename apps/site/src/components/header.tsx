@@ -1,4 +1,4 @@
-import { type Header as HeaderType, type Setting } from '@utils/cms'
+import { type Header as HeaderType, type Setting } from '@/utils/payload'
 import { Image } from 'astro:assets'
 import { CMSLink } from './cmsLink'
 import { cn } from '@/utils/ui'

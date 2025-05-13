@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { CallToActionBlock } from './callToActionBlock'
 import { ContentBlock } from './contentBlock'
 import { MediaBlock } from './mediaBlock'
-import type { Page } from '@/utils/cms'
+import type { Page } from '@/utils/payload'
 
 const blockComponents = {
     cta: CallToActionBlock,
@@ -12,12 +12,8 @@ const blockComponents = {
 
 export const RenderBlocks: React.FC<{
     blocks: Page['layout'][0][]
-}> = props => {
-    const { blocks } = props
-
-    const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
-
-    if (hasBlocks) {
+}> = ({ blocks }) => {
+    if (blocks && Array.isArray(blocks) && blocks.length > 0) {
         return (
             <Fragment>
                 {blocks.map((block, index) => {
@@ -40,6 +36,5 @@ export const RenderBlocks: React.FC<{
             </Fragment>
         )
     }
-
     return null
 }

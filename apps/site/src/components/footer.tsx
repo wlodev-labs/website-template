@@ -1,5 +1,5 @@
 import { Mail, PhoneCall } from 'lucide-react'
-import type { Setting } from '@utils/cms'
+import type { Setting } from '@/utils/payload'
 
 export const Footer = async ({
     websiteSettings,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Media } from '../media'
 import { formatDateTime } from '@/utils/formatDateTime'
-import type { Post } from '@/utils/cms'
+import type { Post } from '@/utils/payload'
 
 export const PostHero: React.FC<{
     post: Post

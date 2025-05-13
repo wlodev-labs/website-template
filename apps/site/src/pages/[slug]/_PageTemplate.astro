@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { RenderBlocks } from '@/components/blocks/renderBlocks'
 import { RenderHero } from '@/components/heros/renderHero'
-import { cms } from '@/utils/cms'
+import { cms } from '@/utils/payload'
 
 const slug = Astro.params.slug || Astro.props.slug
 if (!slug) {

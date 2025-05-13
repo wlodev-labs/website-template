@@ -3,7 +3,7 @@ import React from 'react'
 import { CMSLink } from '../cmsLink'
 import { Media } from '../media'
 import RichText from '../richText'
-import type { Page } from '@/utils/cms'
+import type { Page } from '@/utils/payload'
 import { cn } from '@/utils/ui'
 
 export const PrimaryHero: React.FC<Page['hero']> = ({
