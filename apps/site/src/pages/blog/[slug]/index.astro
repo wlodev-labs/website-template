@@ -4,10 +4,11 @@ import { PostHero } from '@/components/heros/postHero'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import RichText from '@/components/richText'
 
-// https://docs.astro.build/en/guides/routing/#static-ssg-mode
-// Because all routes must be determined at build time, a dynamic route must export a getStaticPaths()
-// that returns an array of objects with a params property.
-// Each of these objects will generate a corresponding route.
+/**
+ * https://docs.astro.build/en/guides/routing/#static-ssg-mode
+ * Because all routes must be determined at build time, a dynamic route must export a getStaticPaths()
+ * that returns an array of objects with a params property. Each of these objects will generate a corresponding route.
+ */
 export async function getStaticPaths() {
     const posts = await cms.find({ collection: 'posts', limit: 1000 })
     const params = posts.docs.map(({ slug }) => {

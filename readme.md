@@ -1,12 +1,12 @@
 ## Website Template 🌏
 
-Start building a website with basics of payloadcms and astro setup for you like - collection, blocks, fields for payloadcms and astrojs pages structure along with react integration and all of the components built with this framework. Deploy to [wlodev.com](https://wlodev.com) with a single `git push` on the main branch.
+Start building a website with basics of Payload CMS and Astro, including collection, blocks, fields for Payload CMS and Astro page structure along with React integration and components built using this framework. Deploy to [wlodev.com](https://wlodev.com) with a single `git push` on the main branch.
 
-Here's the little overview of template file structure and how to develop a website with payloadcms and astro:
+Here's a brief of the template file structure and how to develop a website using Payload CMS and Astro:
 
 ### Template file structure
 
-Template is built with turborepo, which efficiently manage multiple apps within single development environment and by using `npm run dev`. We will go through the each directory one by one, from top to bottom to see what it's for and how it integrates wit entire website.
+The template is built with Turborepo, which efficiently manages multiple apps within a single development environment using `npm run dev`. We will go through each directory one by one to understand its purpose and how it integrates with the entire website.
 
 ```bash
 ├── apps
@@ -70,13 +70,13 @@ Template is built with turborepo, which efficiently manage multiple apps within 
 └── turbo.json
 ```
 
-### What is Payloadcms (/apps/cms)
+### What is Payload CMS (/apps/cms)
 
-Payloadcms is a code-first approach in a cms game, where you can easily define the appropiate fields, blocks and schema with typescript files. It has a tons of features built-in, like authentication, file uploads, flexible REST API, admin panel but also gives you a way to fully customize your experience with plugins. You don't need to know every aspect of this open source headless cms to get started with your first website. Here's step by step how this template was created with payloadcms.
+Payload CMS is a code-first content management system where you define fields, blocks and schemaa using Typescript files. It has tons of built-in features, like authentication, file uploads, flexible REST API, admin panel but also gives you a way to fully customize your experience with plugins. You don't need to understand every detail of this open-source system to start building your first website. Here's a step-by-step overview of how this template was created using Payload CMS.
 
 #### Collections
 
-> Collections are the primary way to structure recurring data in your application, such as products, pages, posts, and other types of content that you might want to manage. More in [docs](https://payloadcms.com/docs/configuration/collections#admin-options).
+> Collections are the main way to structure repeatable content in your website, such as products, pages, posts, or any other types of content that you might want to manage. More in [docs](https://payloadcms.com/docs/configuration/collections#admin-options).
 
 ```
 import type { CollectionConfig } from 'payload'
@@ -124,7 +124,7 @@ export const Nav: GlobalConfig = {
 
 > Blocks are a great way to create a flexible content model that can be used to build a wide variety of content types, e.g. a layout builder tool that grants editors to design highly customizable page or post layouts. Blocks could include configs such as `Quote`, `CallToAction`, `Slider`, `Content`, `Gallery`, or others. More in [docs](https://payloadcms.com/docs/fields/blocks).
 
-Pages in this template, but also blog posts are created based on blocks, where the editor / your website client can easily modify the content or even change the layout using them. More often you, as a developer, will be preparing these layouts and then the client will just take care of a content.
+In this template, both pages and blog posts are built using blocks. This lets editors or clients modify content and adjust layouts easily. Typically, developers set up these block-based layouts, and clients handle the content.
 
 ```
 import type { Block } from 'payload'
@@ -242,20 +242,20 @@ export default buildConfig({
 })
 ```
 
-To learn more about what is payload and how to get the most of it, visit the [payloadcms docs](https://payloadcms.com/docs/getting-started/what-is-payload).
+To learn more about Payload and how to get the most of it, visit the [Payload CMS documentation](https://payloadcms.com/docs/getting-started/what-is-payload).
 
 ### What is Astro.js (/apps/site)
 
 > Astro is a JavaScript web framework optimized for building fast, content-driven websites. **Astro supports every major UI framework**. Bring your existing components and take advantage of Astro's optimized client build performance. Learn more at [astro.build](https://astro.build).
 
-Basically, astro is responsible only for routing and rendering the pages, while you can use any framework you want to build the components. In this template, we are using react, but you can easily switch to svelte, vue or solidjs. When you look at the file structure, all the files are either `.tsx` or `.ts`, only pages directory holds `.astro` files.
+Astro handles routing and page rendering, while you can use any framework to build components. In this template, React is used, but you can easily switch to Svelte, Vue or SolidJS. The file structure consists of `.tsx` or `.ts` files, with the pages directory containing `.astro` files.
 
-#### utils
+#### Utils
 
-The most important part of astro and payloadcms integration is the `payload.ts` file, which initializes the REST API based client with the auto-generated types, meaning that all of the functions are fully typed with intellisense for e.g. collection names, fields or blocks.
+The key part of the Astro and Payload CMS integration is the `payload.ts` file, which initializes the REST API-based client with auto-generated types. This ensures all functions are fully typed with IntelliSense support for example, for collection names, fields, or blocks.
 
 > [!NOTE]
-> Payloadcms team announced the payloadcms sdk package, which will replace this custom client in the future. [(feat: add Payload SDK package ) https://github.com/payloadcms/payload/pull/9463](https://github.com/payloadcms/payload/pull/9463).
+> The Payload CMS team has announced the upcoming Payload CMS SDK package, which will replace this custom client in the future. [(feat: add Payload SDK package) https://github.com/payloadcms/payload/pull/9463](https://github.com/payloadcms/payload/pull/9463).
 
 ```
 import { initPayloadClient } from '@wlodev/astro'
@@ -269,14 +269,14 @@ export const cms = initPayloadClient<Config>({
 export * from '../../../cms/src/payload-types'
 ```
 
-#### components
+#### Components
 
-Regular react, svelte etc. components you use to build a website.
+Regular React, Svelte, or other framework components used to build a website.
 
 > [!NOTE]
-> Astro provides built-in `<Image>` component which handles the image optimization by default. Using other framework, we cannot use the astro components, thus depending on the framework you use, you will have to create new Image component. Fortunately, astro provides an easy way to enable image optimization and benefits of `<Image>` component without using their implementation with the `getImage()` function from the `astro:assets` packages. Here's the implementation of `Image` component in react.
+> Astro provides a built-in `<Image>` component that handles the image optimization by default. However, when using other frameworks, Astro components can’t be directly used. Depending on the framework, you’ll need to create a custom image component. Fortunately, Astro offers an easy way to enable image optimization without using their implementation, through the `getImage()` function from the `astro:assets` package. Here's the implementation of the `Image` component in React.
 
-Image optimization is enabled by default when you deploy to [wlodev.com](https://wlodev.com), so all of your images will be served in multiple sizes, formats and qualities giving your website visitors the best possible loading speeds.
+Image optimization is enabled by default when deploying to [wlodev.com](https://wlodev.com), ensuring all images are served in multiple sizes, formats, and qualities for optimal loading speeds.
 
 ```
 import type { UnresolvedImageTransform } from 'astro'
@@ -296,9 +296,9 @@ export type ImageProps = {
     UnresolvedImageTransform
 
 /**
- * Astro provides the image component with the image optimization out of the box, similar to how next/image works.
- * We cannot use the astro image component within the react, so we create this seperate image component
- * but with image optimization handled by getImage from astro:assets
+ * Astro provides an image component with the built-in image optimization, similar to Next.js’s <Image>.
+ * Since we can’t use the Astro image component within React, we create a seperate image component,
+ * with image optimization handled by getImage from astro:assets
  */
 export const Image = async (props: ImageProps) => {
     // https://docs.astro.build/en/reference/modules/astro-assets/#getimage
@@ -334,7 +334,7 @@ Reusable components like button, label, header.
 
 #### components/blocks
 
-After you define your new block in the payloadcms, you have to somehow show it on a website. That's why the blocks directory is for. Below is an example implementation:
+After defining a new block in Payload CMS, you need to display it on the website. The blocks directory handles this. Below is an example implementation:
 
 ```
 import React from 'react'
@@ -374,7 +374,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = props => {
 }
 ```
 
-Then in a single `RenderBlocks` component, you pass the prepared blocks and use it in pages where you define collection in payloadcms.
+In the `RenderBlocks` component, you pass the prepared blocks and use it on pages where the corresponding collection is defined in Payload CMS.
 
 ```
 import React, { Fragment } from 'react'
@@ -419,9 +419,9 @@ export const RenderBlocks: React.FC<{
 }
 ```
 
-#### pages
+#### Pages
 
-You define the routing of you website here. You just create the directory like `blog` and then `index.astro` file inside it, which will result in the page rendered at `website.com/blog`. Dynamic routing is for handling the cases like blog posts, where the posts are added within the payloadcms collection. Example from this `website-template`:
+This is where website routing is defined. Create a directory like `blog` and an `index.astro` file inside it to render a page at `website.com/blog`. Dynamic routing handles cases like individual blog posts, where content is managed through a Payload CMS collection. Example from this template:
 
 _pages/[slug]/index.astro_
 
@@ -432,10 +432,11 @@ import { PostHero } from '@/components/heros/postHero'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import RichText from '@/components/richText'
 
-// https://docs.astro.build/en/guides/routing/#static-ssg-mode
-// Because all routes must be determined at build time, a dynamic route must export a getStaticPaths()
-// that returns an array of objects with a params property.
-// Each of these objects will generate a corresponding route.
+/**
+ * https://docs.astro.build/en/guides/routing/#static-ssg-mode
+ * Because all routes must be determined at build time, a dynamic route must export a getStaticPaths()
+ * that returns an array of objects with a params property. Each of these objects will generate a corresponding route.
+ */
 export async function getStaticPaths() {
     const posts = await cms.find({ collection: 'posts', limit: 1000 })
     const params = posts.docs.map(({ slug }) => {
@@ -482,23 +483,23 @@ const post = postsRes.docs[0]
 </BaseLayout>
 ```
 
-To learn more about the dynamic routing, visit the [astro docs](https://docs.astro.build/en/guides/routing/#static-ssg-mode).
+To learn more about dynamic routing, visit the [Astro docs](https://docs.astro.build/en/guides/routing/#static-ssg-mode).
 
 ## Deployment
 
-Payload CMS and Astro are open source projects. You can deploy them to any hosting provider and change them anytime you want. [Wlodev.com](https://wlodev.com) deployment platform was created to make this process as easy as possible, not only for you, the developer, but also your clients making both of you happy from the website development to the final website hand over and maintenance.
+Payload CMS and Astro are open-source and can be deployed to any hosting provider. The [wlodev.com](https://wlodev.com) deployment platform was created to simplify the deployment process for both developers and clients - from development to final handoff and maintenance.
 
-What [wlodev.com](https://wlodev.com) platform gives you and your clients:
+What [wlodev.com](https://wlodev.com) offers:
 
-    - GitHub repo based deployments with git push
-    - Complete setup for Payload CMS with s3 bucket and mongodb database. It just works.
-    - Image optimization
-    - Automatic SSL certificate
-    - Built-in analytics with no additional setup
-    - Complete client dashboard. Track website visits, modify content and manage billing all in one place.
+- GitHub-bbased deployments via git push
+- Fully configured Payload CMS with S3 bucket and MongoDB. It just works.
+- Image optimization
+- Automatic SSL certificate
+- Built-in analytics with no setup required
+- Client dashboard for content management, site stats, and billing, all in one place.
 
-These are only the highlights and more features are about to come very soon. All development sites are **free**, so give it a shot and create your first development website now! Visit [wlodev.com](https://wlodev.com) and simplify your website development 🌏.
+These are only the highlights - more features are coming very soon. All development sites are **free**. Visit [wlodev.com](https://wlodev.com) to create your first development website and streamline your workflow 🌏.
 
 ## Questions
 
-If you have any issues or questions, please don't hesitate to reach out to us on [X (@wlodev)](https://x.com/wlodev) or dev@wlodev.com. Every feedback is valuable and we will consider all requests to improve the experience for you.
+For support or feedback, contact us on [X (@wlodev)](https://x.com/wlodev) or dev@wlodev.com. All feedback is valuable, and we'll consider all requests to improve your experience.

@@ -15,9 +15,9 @@ export type ImageProps = {
     UnresolvedImageTransform
 
 /**
- * Astro provides the image component with the image optimization out of the box, similar to how next/image works.
- * We cannot use the astro image component within the react, so we create this seperate image component
- * but with image optimization handled by getImage from astro:assets
+ * Astro provides an image component with the built-in image optimization, similar to Next.js’s <Image>.
+ * Since we can’t use the Astro image component within React, we create a seperate image component,
+ * with image optimization handled by getImage from astro:assets
  */
 export const Image = async (props: ImageProps) => {
     // https://docs.astro.build/en/reference/modules/astro-assets/#getimage
