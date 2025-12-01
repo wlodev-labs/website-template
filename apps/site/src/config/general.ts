@@ -2,6 +2,6 @@ import type { AstroConfig } from 'astro'
 
 export const general: Partial<AstroConfig> = {
     // Production / target url of a website
-    site: 'https://website.wlodev.com',
+    site: 'https://website.wlodev.app',
     trailingSlash: 'never',
 }

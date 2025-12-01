@@ -2,14 +2,14 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { RenderBlocks } from '@/components/blocks/renderBlocks'
 import { RenderHero } from '@/components/heros/renderHero'
-import { cms } from '@/utils/payload'
+import { payload } from '@/utils/payload'
 
 const slug = Astro.params.slug || Astro.props.slug
 if (!slug) {
     throw new Error('Slug is required')
 }
 
-const page = await cms.find({
+const page = await payload.find({
     collection: 'pages',
     limit: 1,
     where: {

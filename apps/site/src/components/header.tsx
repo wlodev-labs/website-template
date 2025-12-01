@@ -34,7 +34,7 @@ export const Header = async ({
                             width={websiteSettings.logo.width}
                             height={websiteSettings.logo.height}
                             loading='eager'
-                            class='max-w-[9.375rem] w-full h-[34px]'
+                            class='max-w-37.5 w-full h-[34px]'
                         />
                     )}
                 </a>
