@@ -23,7 +23,7 @@ export const MediaBlock: React.FC<Props> = props => {
         disableInnerContainer,
     } = props
 
-    let caption
+    let caption: any
     if (media && typeof media === 'object') caption = media.caption
 
     return (
@@ -33,7 +33,7 @@ export const MediaBlock: React.FC<Props> = props => {
                 {
                     'container mx-auto px-4': enableGutter,
                 },
-                className
+                className,
             )}
         >
             {media && (
@@ -49,7 +49,7 @@ export const MediaBlock: React.FC<Props> = props => {
                         {
                             'container px-4 mx-auto': !disableInnerContainer,
                         },
-                        captionClassName
+                        captionClassName,
                     )}
                 >
                     <RichText data={caption} enableGutter={false} />
