@@ -4,19 +4,6 @@ import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import '../styles/global.css'
-
-import { payload } from '@/utils/payload'
-import { Header } from '@components/header'
-import { Footer } from '@/components/footer'
-
-interface Props {
-    invertHeaderColor?: boolean
-}
-
-const websiteSettings = await payload.findGlobal({ slug: 'settings' })
-const headerData = await payload.findGlobal({ slug: 'header' })
-
-const { invertHeaderColor } = Astro.props
 ---
 
 <html lang='pl'>
@@ -29,12 +16,6 @@ const { invertHeaderColor } = Astro.props
         <title>Wlodev Website Template</title>
     </head>
     <body>
-        <Header
-            data={headerData}
-            websiteSettings={websiteSettings}
-            invertHeaderColor={invertHeaderColor}
-        />
         <slot />
-        <Footer websiteSettings={websiteSettings} />
     </body>
 </html>
