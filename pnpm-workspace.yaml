@@ -1,11 +1,8 @@
-# shamefullyHoist is crucial for imports
-shamefullyHoist: true
+packages:
+    - 'apps/*'
 minimumReleaseAge: 10080
 blockExoticSubdeps: true
 strictDepBuilds: true
-packages:
-    - 'apps/*'
 allowBuilds:
     esbuild: true
     sharp: true
-    '@swc/core': true
