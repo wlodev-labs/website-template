@@ -10,15 +10,15 @@
         "check:types": "cross-env NODE_OPTIONS=--no-deprecation tsc --noEmit"
     },
     "dependencies": {
-        "@payloadcms/db-mongodb": "3.85.2",
-        "@payloadcms/next": "3.85.2",
-        "@payloadcms/plugin-seo": "3.85.2",
-        "@payloadcms/richtext-lexical": "3.85.2",
-        "@wlodev/payload": "0.11.0",
+        "@payloadcms/db-mongodb": "3.88.0",
+        "@payloadcms/next": "3.88.0",
+        "@payloadcms/plugin-seo": "3.88.0",
+        "@payloadcms/richtext-lexical": "3.88.0",
+        "@wlodev/payload": "0.13.1",
         "cross-env": "^10.1.0",
         "graphql": "^17.0.2",
-        "next": "16.2.10",
-        "payload": "3.85.2",
+        "next": "16.3.0",
+        "payload": "3.88.0",
         "react": "19.2.7",
         "react-dom": "19.2.7"
     },

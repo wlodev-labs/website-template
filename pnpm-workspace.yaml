@@ -1,6 +1,9 @@
 packages:
     - 'apps/*'
 minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+    - '@wlodev/payload'
+    - '@wlodev/astro'
 blockExoticSubdeps: true
 strictDepBuilds: true
 allowBuilds:
