@@ -132,48 +132,50 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
-  layout: (
-    | {
-        /**
-         * One column means the text will be spread across the full width of the section/page. Two columns split the section into two parts and place the text next to each other.
-         */
-        layout?: ('full' | 'twoColumns') | null;
-        firstColumnRichText?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
+  layout?:
+    | (
+        | {
+            /**
+             * One column means the text will be spread across the full width of the section/page. Two columns split the section into two parts and place the text next to each other.
+             */
+            layout?: ('full' | 'twoColumns') | null;
+            firstColumnRichText?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        secondColumnRichText?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
+            } | null;
+            secondColumnRichText?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'content';
-      }
-    | MediaBlock
-  )[];
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | MediaBlock
+      )[]
+    | null;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
    */

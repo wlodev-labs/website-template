@@ -58,7 +58,6 @@ export const Pages: CollectionConfig<'pages'> = {
                 },
             },
             blocks: [ContentBlock, MediaBlock],
-            required: true,
         },
         slugField(),
     ],

@@ -1,0 +1,26 @@
+---
+import { payload } from '@/lib/payload'
+import { Gutter } from '@/components/gutter'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+export async function getStaticPaths() {
+    const pages = await payload.find({
+        collection: 'pages',
+        depth: 0,
+        pagination: false,
+    })
+
+    return pages.docs.map(page => ({
+        params: { slug: page.slug },
+        props: { page },
+    }))
+}
+
+const { page } = Astro.props
+---
+
+<BaseLayout>
+    <Gutter>
+        {page.title}
+    </Gutter>
+</BaseLayout>
