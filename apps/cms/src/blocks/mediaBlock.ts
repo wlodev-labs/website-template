@@ -1,7 +1,7 @@
 import type { Block } from 'payload'
 
 export const MediaBlock: Block = {
-    slug: 'mediaBlock',
+    slug: 'media',
     interfaceName: 'MediaBlock',
     labels: {
         singular: {
@@ -19,6 +19,10 @@ export const MediaBlock: Block = {
             type: 'upload',
             relationTo: 'media',
             required: true,
+            label: {
+                en: 'Media',
+                pl: 'Media',
+            },
         },
     ],
 }

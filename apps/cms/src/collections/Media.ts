@@ -1,9 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import {
-    FixedToolbarFeature,
-    InlineToolbarFeature,
-    lexicalEditor,
-} from '@payloadcms/richtext-lexical'
 
 export const Media: CollectionConfig = {
     slug: 'media',
@@ -48,15 +43,6 @@ export const Media: CollectionConfig = {
                     pl: 'Podpis to krótki opis obrazu, wyświetlany poniżej obrazu.',
                 },
             },
-            editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                    return [
-                        ...rootFeatures,
-                        FixedToolbarFeature(),
-                        InlineToolbarFeature(),
-                    ]
-                },
-            }),
         },
     ],
     upload: true,

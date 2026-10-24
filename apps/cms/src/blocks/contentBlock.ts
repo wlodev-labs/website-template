@@ -1,75 +1,7 @@
-import type { Block, Field } from 'payload'
-import {
-    FixedToolbarFeature,
-    HeadingFeature,
-    InlineToolbarFeature,
-    lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-import { link } from '@/fields/link'
+import type { Block } from 'payload'
 
-const columnFields: Field[] = [
-    {
-        name: 'size',
-        type: 'select',
-        defaultValue: 'full',
-        label: {
-            en: 'Column Size',
-            pl: 'Rozmiar kolumny',
-        },
-        options: [
-            {
-                value: 'full',
-                label: {
-                    en: 'Full',
-                    pl: 'Cała szerokość',
-                },
-            },
-            {
-                value: 'half',
-                label: {
-                    en: 'Half',
-                    pl: 'Połowa',
-                },
-            },
-        ],
-    },
-    {
-        name: 'richText',
-        type: 'richText',
-        editor: lexicalEditor({
-            features: ({ rootFeatures }) => {
-                return [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                ]
-            },
-        }),
-        label: false,
-    },
-    {
-        name: 'enableLink',
-        type: 'checkbox',
-        label: {
-            en: 'Enable Link',
-            pl: 'Akywuj link pod kolumną',
-        },
-    },
-    link({
-        overrides: {
-            admin: {
-                condition: (_data, siblingData) => {
-                    return Boolean(siblingData?.enableLink)
-                },
-            },
-        },
-    }),
-]
-
-export const Content: Block = {
+export const ContentBlock: Block = {
     slug: 'content',
-    interfaceName: 'ContentBlock',
     labels: {
         singular: {
             en: 'Content',
@@ -82,26 +14,56 @@ export const Content: Block = {
     },
     fields: [
         {
-            name: 'columns',
-            type: 'array',
+            name: 'layout',
+            type: 'select',
             label: {
-                en: 'Columns',
-                pl: 'Kolumny',
+                en: 'Layout',
+                pl: 'Układ',
             },
-            labels: {
-                singular: {
-                    en: 'column',
-                    pl: 'kolumna',
+            defaultValue: 'full',
+            admin: {
+                description: {
+                    en: 'One column means the text will be spread across the full width of the section/page. Two columns split the section into two parts and place the text next to each other.',
+                    pl: 'Jedna kolumna oznacza, że tekst zostanie rozłożony na pełną szerokość danej sekcji / strony. Dwie kolumny dzielą sekcje na dwie części i układają tekst obok siebie.',
                 },
-                plural: {
-                    en: 'columns',
-                    pl: 'kolumny',
+            },
+            options: [
+                {
+                    label: {
+                        en: '1 column',
+                        pl: '1 kolumna',
+                    },
+                    value: 'full',
                 },
+                {
+                    label: {
+                        en: '2 columns',
+                        pl: '2 kolumny',
+                    },
+                    value: 'twoColumns',
+                },
+            ],
+        },
+        {
+            name: 'firstColumnRichText',
+            type: 'richText',
+            label: {
+                en: 'Column 1',
+                pl: 'Kolumna i',
+            },
+        },
+        {
+            name: 'secondColumnRichText',
+            type: 'richText',
+            label: {
+                en: 'Column 2',
+                pl: 'Kolumna 2',
             },
             admin: {
-                initCollapsed: true,
+                condition: (_, siblingData) => {
+                    return siblingData.layout === 'twoColumns'
+                },
             },
-            fields: columnFields,
         },
     ],
 }

@@ -68,8 +68,6 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
-    posts: Post;
-    categories: Category;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -80,8 +78,6 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
-    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -94,11 +90,11 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    header: Header;
+    heading: Heading;
     settings: Setting;
   };
   globalsSelect: {
-    header: HeaderSelect<false> | HeaderSelect<true>;
+    heading: HeadingSelect<false> | HeadingSelect<true>;
     settings: SettingsSelect<false> | SettingsSelect<true>;
   };
   locale: null;
@@ -136,111 +132,68 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
-  hero: {
-    type: 'primary' | 'none';
-    richText?: {
-      root: {
-        type: string;
-        children: {
-          type: any;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    links?:
-      | {
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            reference?:
-              | ({
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null)
-              | ({
-                  relationTo: 'posts';
-                  value: string | Post;
-                } | null);
-            url?: string | null;
-            /**
-             * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
-             */
-            label: string;
-            appearance?: ('default' | 'outline') | null;
+  layout: (
+    | {
+        /**
+         * One column means the text will be spread across the full width of the section/page. Two columns split the section into two parts and place the text next to each other.
+         */
+        layout?: ('full' | 'twoColumns') | null;
+        firstColumnRichText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
           };
-          id?: string | null;
-        }[]
-      | null;
-    media?: (string | null) | Media;
-  };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock)[];
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
+          [k: string]: unknown;
+        } | null;
+        secondColumnRichText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'content';
+      }
+    | MediaBlock
+  )[];
   /**
-   * Slug is a text which will be generated and used in the URL of the page. It is generated from the Title / Name field by default.
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
    */
-  slug?: string | null;
-  slugLock?: boolean | null;
+  generateSlug?: boolean | null;
+  /**
+   * A human-readable name in the URL for a given subpage, article, e.g. "about-us" or "contact".
+   */
+  slug: string;
   updatedAt: string;
   createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
+ * via the `definition` "MediaBlock".
  */
-export interface Post {
-  id: string;
-  title: string;
-  /**
-   * This image will be used in the hero section of the post at the very top.
-   */
-  heroImage?: (string | null) | Media;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  categories?: (string | Category)[] | null;
-  relatedPosts?: (string | Post)[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  /**
-   * Slug is a text which will be generated and used in the URL of the page. It is generated from the Title / Name field by default.
-   */
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
+export interface MediaBlock {
+  media: string | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'media';
 }
 /**
  * Media collection is used to store images, videos, pdf and other files.
@@ -273,6 +226,7 @@ export interface Media {
     [k: string]: unknown;
   } | null;
   prefix?: string | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -282,129 +236,6 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: string;
-  name: string;
-  /**
-   * Slug is a text which will be generated and used in the URL of the page. It is generated from the Title / Name field by default.
-   */
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToActionBlock".
- */
-export interface CallToActionBlock {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          /**
-           * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
-           */
-          label: string;
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cta';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock".
- */
-export interface ContentBlock {
-  columns?:
-    | {
-        size?: ('full' | 'half') | null;
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        enableLink?: boolean | null;
-        link?: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          /**
-           * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
-           */
-          label: string;
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'content';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
- */
-export interface MediaBlock {
-  media: string | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -443,14 +274,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: string | Page;
-      } | null)
-    | ({
-        relationTo: 'posts';
-        value: string | Post;
-      } | null)
-    | ({
-        relationTo: 'categories';
-        value: string | Category;
       } | null)
     | ({
         relationTo: 'media';
@@ -508,97 +331,24 @@ export interface PayloadMigration {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
-  hero?:
-    | T
-    | {
-        type?: T;
-        richText?: T;
-        links?:
-          | T
-          | {
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              id?: T;
-            };
-        media?: T;
-      };
   layout?:
     | T
     | {
-        cta?: T | CallToActionBlockSelect<T>;
-        content?: T | ContentBlockSelect<T>;
-        mediaBlock?: T | MediaBlockSelect<T>;
+        content?:
+          | T
+          | {
+              layout?: T;
+              firstColumnRichText?: T;
+              secondColumnRichText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        media?: T | MediaBlockSelect<T>;
       };
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishedAt?: T;
+  generateSlug?: T;
   slug?: T;
-  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToActionBlock_select".
- */
-export interface CallToActionBlockSelect<T extends boolean = true> {
-  richText?: T;
-  links?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock_select".
- */
-export interface ContentBlockSelect<T extends boolean = true> {
-  columns?:
-    | T
-    | {
-        size?: T;
-        richText?: T;
-        enableLink?: T;
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -611,46 +361,13 @@ export interface MediaBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
- */
-export interface PostsSelect<T extends boolean = true> {
-  title?: T;
-  heroImage?: T;
-  content?: T;
-  categories?: T;
-  relatedPosts?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishedAt?: T;
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories_select".
- */
-export interface CategoriesSelect<T extends boolean = true> {
-  name?: T;
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
   prefix?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -710,89 +427,104 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
+ * Settings for the page header / navigation
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header".
+ * via the `definition` "heading".
  */
-export interface Header {
+export interface Heading {
   id: string;
+  /**
+   * List of links in the page header. The order of the items corresponds to the order of display.
+   */
   navItems?:
     | {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
           url?: string | null;
-          /**
-           * The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.
-           */
           label: string;
         };
         id?: string | null;
       }[]
     | null;
+  /**
+   * A prominent button in the page header on the right side. Usually leads to the most important subpage.
+   */
+  cta: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    label: string;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
+ * Email addresses, phone numbers and other general settings
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "settings".
  */
 export interface Setting {
   id: string;
   companyName?: string | null;
-  logo?: (string | null) | Media;
-  address?: string | null;
-  socialMedia?: {
-    instagram?:
+  contact?: {
+    email?: string | null;
+    phoneNumbers?:
       | {
-          link: string;
-          label?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-    facebook?:
-      | {
-          link: string;
-          label?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-    twitter?:
-      | {
-          link: string;
-          label?: string | null;
+          number?: string | null;
           id?: string | null;
         }[]
       | null;
   };
-  emails?:
-    | {
-        address: string;
-        id?: string | null;
-      }[]
-    | null;
-  phones?:
-    | {
-        phoneNumber: string;
-        id?: string | null;
-      }[]
-    | null;
+  location?: {
+    street?: string | null;
+    postalCode?: string | null;
+    city?: string | null;
+  };
+  /**
+   * Content of the consent for processing personal data / privacy policy that will be displayed in contact forms and other forms on the website.
+   */
+  formsPrivacyPolicyConsent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Additional scripts to insert in the <head> and <body> sections. Particularly useful for inserting tracking codes, e.g. Google Analytics or marketing codes, e.g. Facebook Pixel.
+   */
+  scripts?: {
+    head?: string | null;
+    bodyStart?: string | null;
+    bodyEnd?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header_select".
+ * via the `definition` "heading_select".
  */
-export interface HeaderSelect<T extends boolean = true> {
+export interface HeadingSelect<T extends boolean = true> {
   navItems?:
     | T
     | {
@@ -807,6 +539,15 @@ export interface HeaderSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  cta?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -817,44 +558,31 @@ export interface HeaderSelect<T extends boolean = true> {
  */
 export interface SettingsSelect<T extends boolean = true> {
   companyName?: T;
-  logo?: T;
-  address?: T;
-  socialMedia?:
+  contact?:
     | T
     | {
-        instagram?:
+        email?: T;
+        phoneNumbers?:
           | T
           | {
-              link?: T;
-              label?: T;
-              id?: T;
-            };
-        facebook?:
-          | T
-          | {
-              link?: T;
-              label?: T;
-              id?: T;
-            };
-        twitter?:
-          | T
-          | {
-              link?: T;
-              label?: T;
+              number?: T;
               id?: T;
             };
       };
-  emails?:
+  location?:
     | T
     | {
-        address?: T;
-        id?: T;
+        street?: T;
+        postalCode?: T;
+        city?: T;
       };
-  phones?:
+  formsPrivacyPolicyConsent?: T;
+  scripts?:
     | T
     | {
-        phoneNumber?: T;
-        id?: T;
+        head?: T;
+        bodyStart?: T;
+        bodyEnd?: T;
       };
   updatedAt?: T;
   createdAt?: T;

@@ -1,10 +1,11 @@
 import type { Field, GroupField } from 'payload'
-export type LinkAppearances = 'default' | 'outline'
-import deepMerge from '@/utils/deepMerge'
+import deepMerge from '@/lib/deepMerge'
+
+export type LinkAppearances = 'default'
 
 export const appearanceOptions: Record<
     LinkAppearances,
-    { label: Record<string, string> | string; value: string }
+    { label: Record<string, string>; value: string }
 > = {
     default: {
         label: {
@@ -12,13 +13,6 @@ export const appearanceOptions: Record<
             pl: 'Domyślny',
         },
         value: 'default',
-    },
-    outline: {
-        label: {
-            en: 'Outline',
-            pl: 'Obramowanie',
-        },
-        value: 'outline',
     },
 }
 
@@ -36,10 +30,6 @@ export const link: LinkType = ({
     const linkResult: GroupField = {
         name: 'link',
         type: 'group',
-        label: {
-            en: 'Link',
-            pl: 'Odnośnik / Link',
-        },
         admin: {
             hideGutter: true,
         },
@@ -50,10 +40,6 @@ export const link: LinkType = ({
                     {
                         name: 'type',
                         type: 'radio',
-                        label: {
-                            en: 'Link type',
-                            pl: 'Typ linku',
-                        },
                         admin: {
                             layout: 'horizontal',
                             width: '50%',
@@ -63,14 +49,14 @@ export const link: LinkType = ({
                             {
                                 label: {
                                     en: 'Internal link',
-                                    pl: 'Link wewnętrzny (podstrona, post)',
+                                    pl: 'Link wewnętrzny',
                                 },
                                 value: 'reference',
                             },
                             {
                                 label: {
-                                    en: 'Custom URL',
-                                    pl: 'Pełny adres URL (np. do innej strony)',
+                                    en: 'External link',
+                                    pl: 'Link zewnętrzny',
                                 },
                                 value: 'custom',
                             },
@@ -104,10 +90,10 @@ export const link: LinkType = ({
                     siblingData?.type === 'reference',
             },
             label: {
-                en: 'Document to link to',
-                pl: 'Strona, post, do którego prowadzi link',
+                en: 'Select a page, product, or post to link to',
+                pl: 'Wybierz stronę, produkt lub post do podlinkowania',
             },
-            relationTo: ['pages', 'posts'],
+            relationTo: ['pages'],
             required: true,
         },
         {
@@ -117,8 +103,8 @@ export const link: LinkType = ({
                 condition: (_, siblingData) => siblingData?.type === 'custom',
             },
             label: {
-                en: 'Custom URL',
-                pl: 'Pełny adres URL (np. do innej strony)',
+                en: 'Enter the URL to which the link should lead',
+                pl: 'Wpisz adres URL, do którego ma prowadzić link',
             },
             required: true,
         },
@@ -140,16 +126,12 @@ export const link: LinkType = ({
                 {
                     name: 'label',
                     type: 'text',
-                    label: {
-                        en: 'Link label',
-                        pl: 'Tekst linku',
-                    },
                     admin: {
                         width: '50%',
-                        description: {
-                            en: 'The text that will be displayed as the link. When clicked, the user will be taken to a subpage, post, or external page.',
-                            pl: 'Tekst, który będzie wyświetlany jako link. Po kliknięciu w ten tekst użytkownik zostanie przeniesiony do podstrony, postu lub zewnętrznej strony.',
-                        },
+                    },
+                    label: {
+                        en: 'Enter the text to be displayed as a link',
+                        pl: 'Wpisz tekst, który ma być wyświetlany jako link',
                     },
                     required: true,
                 },
@@ -160,14 +142,11 @@ export const link: LinkType = ({
     }
 
     if (appearances !== false) {
-        let appearanceOptionsToUse = [
-            appearanceOptions.default,
-            appearanceOptions.outline,
-        ]
+        let appearanceOptionsToUse = [appearanceOptions.default]
 
         if (appearances) {
             appearanceOptionsToUse = appearances.map(
-                appearance => appearanceOptions[appearance]
+                appearance => appearanceOptions[appearance],
             )
         }
 
@@ -175,11 +154,14 @@ export const link: LinkType = ({
             name: 'appearance',
             type: 'select',
             label: {
-                en: 'Link appearance',
-                pl: 'Wygląd linku',
+                en: 'Select link appearance',
+                pl: 'Wybierz wygląd linku',
             },
             admin: {
-                width: '50%',
+                description: {
+                    en: 'Select the appearance of the link. This will affect how the link is displayed on the website.',
+                    pl: 'Wybierz wygląd linku. To wpłynie na sposób wyświetlania linku na stronie internetowej.',
+                },
             },
             defaultValue: 'default',
             options: appearanceOptionsToUse,

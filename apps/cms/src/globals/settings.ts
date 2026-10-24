@@ -3,177 +3,212 @@ import type { GlobalConfig } from 'payload'
 export const Settings: GlobalConfig = {
     slug: 'settings',
     label: {
-        en: 'Settings',
-        pl: 'Ustawienia',
+        en: 'General settings',
+        pl: 'Ustawienia ogólne',
     },
     admin: {
         group: {
-            en: 'General',
-            pl: 'Ogólne',
+            en: 'Settings',
+            pl: 'Ustawienia',
         },
-    },
-    access: {
-        read: () => true,
+        description: {
+            en: 'Email addresses, phone numbers and other general settings',
+            pl: 'Adresy email, numery telefonów i inne ustawienia ogólne',
+        },
     },
     fields: [
         {
-            name: 'companyName',
-            label: {
-                en: 'Company Name',
-                pl: 'Nazwa firmy',
-            },
-            type: 'text',
-            required: false,
-        },
-        {
-            name: 'logo',
-            type: 'upload',
-            relationTo: 'media', // Assuming 'media' is the collection for uploaded files
-            required: false,
-        },
-        {
-            name: 'address',
-            type: 'text',
-            label: {
-                en: 'Company Address',
-                pl: 'Adres firmy',
-            },
-            required: false,
-        },
-        {
-            name: 'socialMedia',
-            type: 'group',
-            label: false,
-            fields: [
+            type: 'tabs',
+            tabs: [
                 {
-                    name: 'instagram',
-                    type: 'array',
-                    fields: [
-                        {
-                            name: 'link',
-                            type: 'text',
-                            label: {
-                                en: 'Instagram profile URL address',
-                                pl: 'Adres URL profilu na instagramie',
-                            },
-                            required: true,
-                        },
-                        {
-                            name: 'label',
-                            type: 'text',
-                            label: {
-                                en: 'Alternative label (default: Icon / Instagram)',
-                                pl: 'Alternatywny tekst (domyślnie: Ikonka / Instagram)',
-                            },
-                        },
-                    ],
-                },
-                {
-                    name: 'facebook',
-                    type: 'array',
-                    fields: [
-                        {
-                            name: 'link',
-                            type: 'text',
-                            label: {
-                                en: 'Facebook profile URL address',
-                                pl: 'Adres URL profilu na Facebooku',
-                            },
-                            required: true,
-                        },
-                        {
-                            name: 'label',
-                            label: {
-                                en: 'Alternative label (default: Icon / Facebook)',
-                                pl: 'Alternatywny tekst (domyślnie: Ikonka / Facebook)',
-                            },
-                            type: 'text',
-                        },
-                    ],
-                },
-                {
-                    name: 'twitter',
-                    label: 'X / Twitter',
-                    type: 'array',
-                    fields: [
-                        {
-                            name: 'link',
-                            type: 'text',
-                            label: {
-                                en: 'X profile URL address',
-                                pl: 'Adres URL profilu na X',
-                            },
-                            required: true,
-                        },
-                        {
-                            name: 'label',
-                            label: {
-                                en: 'Alternative label (default: Icon / X)',
-                                pl: 'Alternatywny tekst (domyślnie: Ikonka / X)',
-                            },
-                            type: 'text',
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            name: 'emails',
-            type: 'array',
-            label: {
-                en: 'Email Addresses',
-                pl: 'Adresy e-mail',
-            },
-            // Array type based parameter
-            labels: {
-                singular: {
-                    en: 'email address',
-                    pl: 'adres e-mail',
-                },
-                plural: {
-                    en: 'email addresses',
-                    pl: 'adresy e-mail',
-                },
-            },
-            fields: [
-                {
-                    name: 'address',
-                    type: 'text',
                     label: {
-                        en: 'Email address',
-                        pl: 'Adres e-mail',
+                        en: 'Basic information',
+                        pl: 'Podstawowe informacje',
                     },
-                    required: true,
+                    fields: [
+                        {
+                            name: 'companyName',
+                            type: 'text',
+                            label: {
+                                en: 'Company name',
+                                pl: 'Pełna nazwa firmy',
+                            },
+                        },
+                        {
+                            name: 'contact',
+                            label: {
+                                en: 'Contact information',
+                                pl: 'Dane kontaktowe',
+                            },
+                            type: 'group',
+                            fields: [
+                                {
+                                    name: 'email',
+                                    type: 'email',
+                                    label: {
+                                        en: 'Email address',
+                                        pl: 'Adres email',
+                                    },
+                                },
+                                {
+                                    name: 'phoneNumbers',
+                                    label: {
+                                        en: 'Phone numbers',
+                                        pl: 'Numery telefonów',
+                                    },
+                                    labels: {
+                                        singular: {
+                                            en: 'phone number',
+                                            pl: 'numer telefonu',
+                                        },
+                                        plural: {
+                                            en: 'Phone numbers',
+                                            pl: 'Numery telefonów',
+                                        },
+                                    },
+                                    type: 'array',
+                                    admin: {
+                                        components: {
+                                            RowLabel: {
+                                                path: '/components/RowLabel.tsx#RowLabel',
+                                                clientProps: {
+                                                    use: 'number',
+                                                },
+                                            },
+                                        },
+                                    },
+                                    fields: [
+                                        {
+                                            name: 'number',
+                                            type: 'text',
+                                            label: {
+                                                en: 'Phone number',
+                                                pl: 'Numer telefonu',
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            name: 'location',
+                            type: 'group',
+                            label: {
+                                en: 'Company address',
+                                pl: 'Adres firmy',
+                            },
+                            fields: [
+                                {
+                                    type: 'row',
+                                    fields: [
+                                        {
+                                            name: 'street',
+                                            type: 'text',
+                                            label: {
+                                                en: 'Street',
+                                                pl: 'Ulica',
+                                            },
+                                            admin: {
+                                                width: '100%',
+                                            },
+                                        },
+                                        {
+                                            name: 'postalCode',
+                                            type: 'text',
+                                            label: {
+                                                en: 'Postal code',
+                                                pl: 'Kod pocztowy',
+                                            },
+                                            admin: {
+                                                width: '25%',
+                                            },
+                                        },
+                                        {
+                                            name: 'city',
+                                            type: 'text',
+                                            label: {
+                                                en: 'City',
+                                                pl: 'Miasto',
+                                            },
+                                            admin: {
+                                                width: '75%',
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
                 },
-            ],
-        },
-        {
-            name: 'phones',
-            type: 'array',
-            label: {
-                en: 'Phone Numbers',
-                pl: 'Numery telefonów',
-            },
-            // Array type based parameter
-            labels: {
-                singular: {
-                    en: 'phone number',
-                    pl: 'numer telefonu',
-                },
-                plural: {
-                    en: 'phone numbers',
-                    pl: 'numery telefonów',
-                },
-            },
-            fields: [
                 {
-                    name: 'phoneNumber',
-                    type: 'text',
                     label: {
-                        en: 'Phone number',
-                        pl: 'Numer telefonu',
+                        en: 'Legal notes (privacy policy, terms of service, etc.)',
+                        pl: 'Noty prawne (polityka prywatności, regulamin itp.)',
                     },
-                    required: true,
+                    fields: [
+                        {
+                            name: 'formsPrivacyPolicyConsent',
+                            type: 'richText',
+                            label: {
+                                en: 'Consent for processing personal data in forms',
+                                pl: 'Zgoda na przetwarzanie danych osobowych w formularzach',
+                            },
+                            admin: {
+                                description: {
+                                    en: 'Content of the consent for processing personal data / privacy policy that will be displayed in contact forms and other forms on the website.',
+                                    pl: 'Treść zgody na przetwarzanie danych osobowych / polityki prywatności, która będzie wyświetlana w formularzach kontaktowych i innych formularzach na stronie.',
+                                },
+                            },
+                        },
+                    ],
+                },
+                {
+                    label: {
+                        en: 'Advanced / SEO',
+                        pl: 'Zaawansowane / SEO',
+                    },
+                    fields: [
+                        {
+                            name: 'scripts',
+                            type: 'group',
+                            label: {
+                                en: 'Scripts',
+                                pl: 'Skrypty',
+                            },
+                            admin: {
+                                description: {
+                                    en: 'Additional scripts to insert in the <head> and <body> sections. Particularly useful for inserting tracking codes, e.g. Google Analytics or marketing codes, e.g. Facebook Pixel.',
+                                    pl: 'Dodatkowe skrypty do wstawienia w sekcjach <head> i <body>. Szczególnie przydatne do wstawienia kodów śledzących, np. Google Analytics lub marketingowych, np. Facebook Pixel.',
+                                },
+                            },
+                            fields: [
+                                {
+                                    name: 'head',
+                                    type: 'textarea',
+                                    label: {
+                                        en: 'Scripts in the <head> section',
+                                        pl: 'Skrypty w sekcji <head>',
+                                    },
+                                },
+                                {
+                                    name: 'bodyStart',
+                                    type: 'textarea',
+                                    label: {
+                                        en: 'Scripts at the beginning of the <body> section',
+                                        pl: 'Skrypty na początku sekcji <body>',
+                                    },
+                                },
+                                {
+                                    name: 'bodyEnd',
+                                    type: 'textarea',
+                                    label: {
+                                        en: 'Scripts at the end of the <body> section',
+                                        pl: 'Skrypty na końcu sekcji <body>',
+                                    },
+                                },
+                            ],
+                        },
+                    ],
                 },
             ],
         },

@@ -1,35 +1,23 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { buildConfig } from 'payload'
+import { en } from '@payloadcms/translations/languages/en'
+import { pl } from '@payloadcms/translations/languages/pl'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { seoPlugin } from '@payloadcms/plugin-seo'
-import { getSiteURL, wlodevPlugin } from '@wlodev/payload'
-import type { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
-import type { Post, Page } from './payload-types'
+import { wlodevPlugin } from '@wlodev/payload'
+import { defaultLexical } from './fields/defaultLexical'
 
 // Your collections imports
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { Posts } from './collections/Posts'
 import { Pages } from './collections/Pages'
-import { Header } from './globals/Header/Header'
-import { Settings } from './globals/settings'
-import { Categories } from './collections/Categories'
+
+// Your globals imports
+import { Settings } from './globals/Settings'
+import { Heading } from './globals/Heading'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-
-const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-    return doc?.title
-        ? `${doc.title} | Wlodev Website Template`
-        : 'Wlodev Website Template'
-}
-
-const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
-    const url = getSiteURL() ?? new URL('http://localhost:3000')
-    return doc?.slug ? `${url.toString()}/${doc.slug}` : url.toString()
-}
 
 export default buildConfig({
     admin: {
@@ -38,9 +26,13 @@ export default buildConfig({
             baseDir: path.resolve(dirname),
         },
     },
-    globals: [Header, Settings],
-    collections: [Pages, Posts, Categories, Media, Users],
-    editor: lexicalEditor(),
+    globals: [Heading, Settings],
+    collections: [Pages, Media, Users],
+    i18n: {
+        fallbackLanguage: 'en',
+        supportedLanguages: { en, pl },
+    },
+    editor: defaultLexical,
     secret: process.env.PAYLOAD_SECRET || '',
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -51,11 +43,5 @@ export default buildConfig({
             maxPoolSize: 1,
         },
     }),
-    plugins: [
-        wlodevPlugin(),
-        seoPlugin({
-            generateTitle,
-            generateURL,
-        }),
-    ],
+    plugins: [wlodevPlugin()],
 })
